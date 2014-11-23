@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C8A4560F1A2189BD00786911 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4560E1A2189BD00786911 /* Foundation.framework */; };
+		C8A456111A2189BD00786911 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A456101A2189BD00786911 /* CoreGraphics.framework */; };
+		C8A456131A2189BD00786911 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A456121A2189BD00786911 /* UIKit.framework */; };
+		C8A456151A2189BD00786911 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A456141A2189BD00786911 /* CoreData.framework */; };
+		C8A4561B1A2189BD00786911 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A456191A2189BD00786911 /* InfoPlist.strings */; };
+		C8A4561D1A2189BD00786911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A4561C1A2189BD00786911 /* main.m */; };
+		C8A456211A2189BD00786911 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A456201A2189BD00786911 /* AppDelegate.m */; };
+		C8A456241A2189BD00786911 /* ExpressRabbit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8A456221A2189BD00786911 /* ExpressRabbit.xcdatamodeld */; };
+		C8A456261A2189BD00786911 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A456251A2189BD00786911 /* Images.xcassets */; };
+		C8A4562D1A2189BD00786911 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4562C1A2189BD00786911 /* XCTest.framework */; };
+		C8A4562E1A2189BD00786911 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4560E1A2189BD00786911 /* Foundation.framework */; };
+		C8A4562F1A2189BD00786911 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A456121A2189BD00786911 /* UIKit.framework */; };
+		C8A456301A2189BD00786911 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A456141A2189BD00786911 /* CoreData.framework */; };
+		C8A456381A2189BD00786911 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A456361A2189BD00786911 /* InfoPlist.strings */; };
+		C8A4563A1A2189BD00786911 /* ExpressRabbitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A456391A2189BD00786911 /* ExpressRabbitTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C8A456311A2189BD00786911 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A456031A2189BD00786911 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8A4560A1A2189BD00786911;
+			remoteInfo = ExpressRabbit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C8A4560B1A2189BD00786911 /* ExpressRabbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpressRabbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8A4560E1A2189BD00786911 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C8A456101A2189BD00786911 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C8A456121A2189BD00786911 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C8A456141A2189BD00786911 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C8A456181A2189BD00786911 /* ExpressRabbit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpressRabbit-Info.plist"; sourceTree = "<group>"; };
+		C8A4561A1A2189BD00786911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C8A4561C1A2189BD00786911 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C8A4561E1A2189BD00786911 /* ExpressRabbit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpressRabbit-Prefix.pch"; sourceTree = "<group>"; };
+		C8A4561F1A2189BD00786911 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C8A456201A2189BD00786911 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C8A456231A2189BD00786911 /* ExpressRabbit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpressRabbit.xcdatamodel; sourceTree = "<group>"; };
+		C8A456251A2189BD00786911 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C8A4562B1A2189BD00786911 /* ExpressRabbitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpressRabbitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8A4562C1A2189BD00786911 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C8A456351A2189BD00786911 /* ExpressRabbitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExpressRabbitTests-Info.plist"; sourceTree = "<group>"; };
+		C8A456371A2189BD00786911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C8A456391A2189BD00786911 /* ExpressRabbitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressRabbitTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C8A456081A2189BD00786911 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A456111A2189BD00786911 /* CoreGraphics.framework in Frameworks */,
+				C8A456151A2189BD00786911 /* CoreData.framework in Frameworks */,
+				C8A456131A2189BD00786911 /* UIKit.framework in Frameworks */,
+				C8A4560F1A2189BD00786911 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8A456281A2189BD00786911 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A4562D1A2189BD00786911 /* XCTest.framework in Frameworks */,
+				C8A456301A2189BD00786911 /* CoreData.framework in Frameworks */,
+				C8A4562F1A2189BD00786911 /* UIKit.framework in Frameworks */,
+				C8A4562E1A2189BD00786911 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C8A456021A2189BD00786911 = {
+			isa = PBXGroup;
+			children = (
+				C8A456161A2189BD00786911 /* ExpressRabbit */,
+				C8A456331A2189BD00786911 /* ExpressRabbitTests */,
+				C8A4560D1A2189BD00786911 /* Frameworks */,
+				C8A4560C1A2189BD00786911 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C8A4560C1A2189BD00786911 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C8A4560B1A2189BD00786911 /* ExpressRabbit.app */,
+				C8A4562B1A2189BD00786911 /* ExpressRabbitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C8A4560D1A2189BD00786911 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C8A4560E1A2189BD00786911 /* Foundation.framework */,
+				C8A456101A2189BD00786911 /* CoreGraphics.framework */,
+				C8A456121A2189BD00786911 /* UIKit.framework */,
+				C8A456141A2189BD00786911 /* CoreData.framework */,
+				C8A4562C1A2189BD00786911 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C8A456161A2189BD00786911 /* ExpressRabbit */ = {
+			isa = PBXGroup;
+			children = (
+				C8A4561F1A2189BD00786911 /* AppDelegate.h */,
+				C8A456201A2189BD00786911 /* AppDelegate.m */,
+				C8A456251A2189BD00786911 /* Images.xcassets */,
+				C8A456221A2189BD00786911 /* ExpressRabbit.xcdatamodeld */,
+				C8A456171A2189BD00786911 /* Supporting Files */,
+			);
+			path = ExpressRabbit;
+			sourceTree = "<group>";
+		};
+		C8A456171A2189BD00786911 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C8A456181A2189BD00786911 /* ExpressRabbit-Info.plist */,
+				C8A456191A2189BD00786911 /* InfoPlist.strings */,
+				C8A4561C1A2189BD00786911 /* main.m */,
+				C8A4561E1A2189BD00786911 /* ExpressRabbit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C8A456331A2189BD00786911 /* ExpressRabbitTests */ = {
+			isa = PBXGroup;
+			children = (
+				C8A456391A2189BD00786911 /* ExpressRabbitTests.m */,
+				C8A456341A2189BD00786911 /* Supporting Files */,
+			);
+			path = ExpressRabbitTests;
+			sourceTree = "<group>";
+		};
+		C8A456341A2189BD00786911 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C8A456351A2189BD00786911 /* ExpressRabbitTests-Info.plist */,
+				C8A456361A2189BD00786911 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C8A4560A1A2189BD00786911 /* ExpressRabbit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8A4563D1A2189BD00786911 /* Build configuration list for PBXNativeTarget "ExpressRabbit" */;
+			buildPhases = (
+				C8A456071A2189BD00786911 /* Sources */,
+				C8A456081A2189BD00786911 /* Frameworks */,
+				C8A456091A2189BD00786911 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExpressRabbit;
+			productName = ExpressRabbit;
+			productReference = C8A4560B1A2189BD00786911 /* ExpressRabbit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C8A4562A1A2189BD00786911 /* ExpressRabbitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8A456401A2189BD00786911 /* Build configuration list for PBXNativeTarget "ExpressRabbitTests" */;
+			buildPhases = (
+				C8A456271A2189BD00786911 /* Sources */,
+				C8A456281A2189BD00786911 /* Frameworks */,
+				C8A456291A2189BD00786911 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8A456321A2189BD00786911 /* PBXTargetDependency */,
+			);
+			name = ExpressRabbitTests;
+			productName = ExpressRabbitTests;
+			productReference = C8A4562B1A2189BD00786911 /* ExpressRabbitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C8A456031A2189BD00786911 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = kuaiditu;
+				TargetAttributes = {
+					C8A4562A1A2189BD00786911 = {
+						TestTargetID = C8A4560A1A2189BD00786911;
+					};
+				};
+			};
+			buildConfigurationList = C8A456061A2189BD00786911 /* Build configuration list for PBXProject "ExpressRabbit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C8A456021A2189BD00786911;
+			productRefGroup = C8A4560C1A2189BD00786911 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C8A4560A1A2189BD00786911 /* ExpressRabbit */,
+				C8A4562A1A2189BD00786911 /* ExpressRabbitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C8A456091A2189BD00786911 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A4561B1A2189BD00786911 /* InfoPlist.strings in Resources */,
+				C8A456261A2189BD00786911 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8A456291A2189BD00786911 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A456381A2189BD00786911 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C8A456071A2189BD00786911 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A456211A2189BD00786911 /* AppDelegate.m in Sources */,
+				C8A456241A2189BD00786911 /* ExpressRabbit.xcdatamodeld in Sources */,
+				C8A4561D1A2189BD00786911 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8A456271A2189BD00786911 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A4563A1A2189BD00786911 /* ExpressRabbitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C8A456321A2189BD00786911 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8A4560A1A2189BD00786911 /* ExpressRabbit */;
+			targetProxy = C8A456311A2189BD00786911 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C8A456191A2189BD00786911 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8A4561A1A2189BD00786911 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C8A456361A2189BD00786911 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8A456371A2189BD00786911 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C8A4563B1A2189BD00786911 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C8A4563C1A2189BD00786911 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C8A4563E1A2189BD00786911 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExpressRabbit/ExpressRabbit-Prefix.pch";
+				INFOPLIST_FILE = "ExpressRabbit/ExpressRabbit-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C8A4563F1A2189BD00786911 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExpressRabbit/ExpressRabbit-Prefix.pch";
+				INFOPLIST_FILE = "ExpressRabbit/ExpressRabbit-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C8A456411A2189BD00786911 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ExpressRabbit.app/ExpressRabbit";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExpressRabbit/ExpressRabbit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ExpressRabbitTests/ExpressRabbitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C8A456421A2189BD00786911 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ExpressRabbit.app/ExpressRabbit";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExpressRabbit/ExpressRabbit-Prefix.pch";
+				INFOPLIST_FILE = "ExpressRabbitTests/ExpressRabbitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C8A456061A2189BD00786911 /* Build configuration list for PBXProject "ExpressRabbit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8A4563B1A2189BD00786911 /* Debug */,
+				C8A4563C1A2189BD00786911 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8A4563D1A2189BD00786911 /* Build configuration list for PBXNativeTarget "ExpressRabbit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8A4563E1A2189BD00786911 /* Debug */,
+				C8A4563F1A2189BD00786911 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C8A456401A2189BD00786911 /* Build configuration list for PBXNativeTarget "ExpressRabbitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8A456411A2189BD00786911 /* Debug */,
+				C8A456421A2189BD00786911 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C8A456221A2189BD00786911 /* ExpressRabbit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C8A456231A2189BD00786911 /* ExpressRabbit.xcdatamodel */,
+			);
+			currentVersion = C8A456231A2189BD00786911 /* ExpressRabbit.xcdatamodel */;
+			path = ExpressRabbit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C8A456031A2189BD00786911 /* Project object */;
+}
