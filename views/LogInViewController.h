@@ -1,0 +1,17 @@
+//
+//  LogInViewController.h
+//  快递兔-终
+//
+//  Created by kuaiditu on 14-11-15.
+//  Copyright (c) 2014年 kuaiditu. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface LogInViewController : UIViewController<UITextFieldDelegate>
+- (IBAction)btnClicked:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordText;
+
+@end
