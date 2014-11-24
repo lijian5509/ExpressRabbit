@@ -182,6 +182,11 @@ INPUTACCESSVIEW
             [self showAlertViewWithMaessage:@"该账户未注册，请先注册"];
             return ;
         }else{
+            NSNumber *checkStatus=dataDict[@"result"][@"checkStatus"];
+            if ([checkStatus boolValue]) {
+                [self showAlertViewWithMaessage:@"该用户未激活，请到注册界面激活"];
+                return;
+            }
             //post请求
             NSDictionary *dict = @{@"mobile":self.phoneTextField.text,@"password":self.passwordText.text};
             NSString *postPath = [NSString stringWithFormat:CESHIZONG,DENGLU];
@@ -204,7 +209,6 @@ INPUTACCESSVIEW
     NSNumber *netSiteId=dict[@"result"][@"netSiteId"];
     NSNumber *userId=dict[@"result"][@"id"];
     NSNumber *verSion=dict[@"result"][@"version"];
-    
     if (!n) {
         [self showAlertViewWithMaessage:@"密码或者账号输入有误"];
         return;

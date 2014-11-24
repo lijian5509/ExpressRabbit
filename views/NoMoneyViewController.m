@@ -14,6 +14,7 @@
 @interface NoMoneyViewController ()
 {
     AFHTTPClient *_client;
+    BOOL _isBindBank;
 }
 @end
 
@@ -35,11 +36,24 @@
 //得到银行卡信息
 -(void)viewWillAppear:(BOOL)animated{
     GET_PLISTdICT
+    NSString *postUrl=[NSString stringWithFormat:CESHIZONG,HUOQUYUE];
+    [_client postPath:postUrl parameters:@{@"courierId": dictPlist[@"id"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        BOOL n=(NSNumber *)dict[@"success"];
+        if (n) {
+            _isBindBank=YES;
+          
+        }else{
+            
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
     NSString *urlPath=[NSString stringWithFormat:CESHIZONG,GETBANKCARKMESSASGE];
     [_client postPath:urlPath parameters:@{@"courierId": dictPlist[@"id"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-        NSString *bankCard=dict[@"result"][@"bankCard"];
-        if (bankCard) {
+        BOOL n=[(NSNumber *)dict[@"success"] boolValue];
+        if (n) {
             
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -67,6 +81,7 @@ SHOUJIANPAN;
 }
 
 - (IBAction)btnClicked:(UIButton *)sender {
+    
     GetBankCardViewController *get=[[GetBankCardViewController alloc]init];
     self.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:get animated:YES];

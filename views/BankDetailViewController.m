@@ -7,7 +7,7 @@
 //
 
 #import "BankDetailViewController.h"
-#import "DetailTableViewCell.h"
+
 
 @interface BankDetailViewController ()
 

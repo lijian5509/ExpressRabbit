@@ -8,6 +8,7 @@
 
 #import "GeRenViewController.h"
 #import "HeadView.h"
+#import "BalanceViewController.h"
 //#import "GeRenTableViewCell.h"
 //#import "SheZhiViewController.h"
 //#import "ShareViewController.h"
@@ -148,21 +149,32 @@
 #pragma mark - 单元格选中后
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed=YES;
+     GET_PLISTdICT
     switch (indexPath.row) {
         case 0://我的余额
         {
-            
-            GET_PLISTdICT
             NSString *exit=dictPlist[@"exit"];
             if ([exit isEqualToString:@"2"]) {
                 [self showAlertViewWithMaessage:@"你还没有登录！" title:@"登录提醒" otherBtn:@"登录"];
                 return;
-                
             }
             [self checkUserStatus];
-            NoMoneyViewController *money=[[NoMoneyViewController alloc]init];
-            [self.navigationController pushViewController:money animated:YES];
-            
+            NSString *urlPatn=[NSString stringWithFormat:CESHIZONG,GETBANKCARKMESSASGE];
+            [_client postPath:urlPatn parameters:@{@"couriedId": dictPlist[@"id"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+                BOOL isSuccess=[(NSNumber *)dict[@"success"] boolValue];
+                if (isSuccess) {
+                    BalanceViewController *balance=[[BalanceViewController alloc]init];
+                    [self.navigationController pushViewController:balance animated:YES];
+                }else{
+                    NoMoneyViewController *no=[[NoMoneyViewController alloc]init];
+                    [self.navigationController pushViewController:no animated:YES];
+                    
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [self showAlertViewWithMaessage:@"网络错误" title:@"提示" otherBtn:nil];
+            }];
+
         }
             break;
         case 1://分享有惊喜

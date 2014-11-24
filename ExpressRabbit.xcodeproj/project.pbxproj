@@ -266,9 +266,6 @@
 		C8A458E31A2189F900786911 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457951A2189F800786911 /* ChatViewController.m */; };
 		C8A458E41A2189F900786911 /* CheckPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457971A2189F800786911 /* CheckPhoneViewController.m */; };
 		C8A458E51A2189F900786911 /* CheckPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457981A2189F800786911 /* CheckPhoneViewController.xib */; };
-		C8A458E61A2189F900786911 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A4579A1A2189F800786911 /* DetailTableViewCell.m */; };
-		C8A458E71A2189F900786911 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A4579B1A2189F800786911 /* DetailTableViewCell.xib */; };
-		C8A458E81A2189F900786911 /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A4579D1A2189F800786911 /* DetailTableViewController.m */; };
 		C8A458E91A2189F900786911 /* DidDealTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A4579F1A2189F800786911 /* DidDealTableViewController.m */; };
 		C8A458EA1A2189F900786911 /* DidDealViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457A11A2189F800786911 /* DidDealViewCell.m */; };
 		C8A458EB1A2189F900786911 /* DidDealViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457A21A2189F800786911 /* DidDealViewCell.xib */; };
@@ -330,6 +327,12 @@
 		C8A4592A1A22121700786911 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A459291A22121700786911 /* CoreMedia.framework */; };
 		C8A4592C1A22122600786911 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4592B1A22122600786911 /* CoreVideo.framework */; };
 		C8A4592E1A22123600786911 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A4592D1A22123600786911 /* QuartzCore.framework */; };
+		C8AE17AD1A22FFA80075C9FB /* BalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE17AC1A22FFA80075C9FB /* BalanceViewController.m */; };
+		C8AE17B21A231A360075C9FB /* BalanceViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE17B01A231A360075C9FB /* BalanceViewCell.m */; };
+		C8AE17B31A231A360075C9FB /* BalanceViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AE17B11A231A360075C9FB /* BalanceViewCell.xib */; };
+		C8AE17B61A231D7A0075C9FB /* BalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE17B51A231D7A0075C9FB /* BalanceModel.m */; };
+		C8AE17BB1A232E7A0075C9FB /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE17B91A232E7A0075C9FB /* TradeDetailViewController.m */; };
+		C8AE17BC1A232E7A0075C9FB /* TradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AE17BA1A232E7A0075C9FB /* TradeDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -672,11 +675,6 @@
 		C8A457961A2189F800786911 /* CheckPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckPhoneViewController.h; sourceTree = "<group>"; };
 		C8A457971A2189F800786911 /* CheckPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckPhoneViewController.m; sourceTree = "<group>"; };
 		C8A457981A2189F800786911 /* CheckPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckPhoneViewController.xib; sourceTree = "<group>"; };
-		C8A457991A2189F800786911 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
-		C8A4579A1A2189F800786911 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
-		C8A4579B1A2189F800786911 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
-		C8A4579C1A2189F800786911 /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
-		C8A4579D1A2189F800786911 /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
 		C8A4579E1A2189F800786911 /* DidDealTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DidDealTableViewController.h; sourceTree = "<group>"; };
 		C8A4579F1A2189F800786911 /* DidDealTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DidDealTableViewController.m; sourceTree = "<group>"; };
 		C8A457A01A2189F800786911 /* DidDealViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DidDealViewCell.h; sourceTree = "<group>"; };
@@ -769,6 +767,16 @@
 		C8A459291A22121700786911 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C8A4592B1A22122600786911 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		C8A4592D1A22123600786911 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C8AE17AB1A22FFA80075C9FB /* BalanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceViewController.h; sourceTree = "<group>"; };
+		C8AE17AC1A22FFA80075C9FB /* BalanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceViewController.m; sourceTree = "<group>"; };
+		C8AE17AF1A231A360075C9FB /* BalanceViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceViewCell.h; sourceTree = "<group>"; };
+		C8AE17B01A231A360075C9FB /* BalanceViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceViewCell.m; sourceTree = "<group>"; };
+		C8AE17B11A231A360075C9FB /* BalanceViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BalanceViewCell.xib; sourceTree = "<group>"; };
+		C8AE17B41A231D7A0075C9FB /* BalanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceModel.h; sourceTree = "<group>"; };
+		C8AE17B51A231D7A0075C9FB /* BalanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceModel.m; sourceTree = "<group>"; };
+		C8AE17B81A232E7A0075C9FB /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
+		C8AE17B91A232E7A0075C9FB /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
+		C8AE17BA1A232E7A0075C9FB /* TradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1196,6 +1204,8 @@
 				C8A456F21A2189F800786911 /* FatherModel.m */,
 				C8A456F31A2189F800786911 /* HistoryModel.h */,
 				C8A456F41A2189F800786911 /* HistoryModel.m */,
+				C8AE17B41A231D7A0075C9FB /* BalanceModel.h */,
+				C8AE17B51A231D7A0075C9FB /* BalanceModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1530,6 +1540,7 @@
 				C8AE178B1A22BEDA0075C9FB /* 设置 */,
 				C8AE178A1A22BECB0075C9FB /* 意见反馈 */,
 				C8AE17891A22BEBB0075C9FB /* 分享有惊喜 */,
+				C8AE17A51A22FE2E0075C9FB /* 没有绑定银行卡 */,
 				C8AE17881A22BEB20075C9FB /* 我的余额 */,
 			);
 			name = "个人中心";
@@ -1550,9 +1561,9 @@
 		C8AE17881A22BEB20075C9FB /* 我的余额 */ = {
 			isa = PBXGroup;
 			children = (
-				C8A457D21A2189F800786911 /* NoMoneyViewController.h */,
-				C8A457D31A2189F800786911 /* NoMoneyViewController.m */,
-				C8A457D41A2189F800786911 /* NoMoneyViewController.xib */,
+				C8AE17AB1A22FFA80075C9FB /* BalanceViewController.h */,
+				C8AE17AC1A22FFA80075C9FB /* BalanceViewController.m */,
+				C8AE17AE1A231A0C0075C9FB /* cell */,
 				C8AE17A41A22C3F30075C9FB /* 消息验证 */,
 				C8AE17A31A22C3C90075C9FB /* 交易详情 */,
 				C8AE17A21A22C3BB0075C9FB /* 银行卡资料 */,
@@ -1825,11 +1836,9 @@
 		C8AE17A31A22C3C90075C9FB /* 交易详情 */ = {
 			isa = PBXGroup;
 			children = (
-				C8A457991A2189F800786911 /* DetailTableViewCell.h */,
-				C8A4579A1A2189F800786911 /* DetailTableViewCell.m */,
-				C8A4579B1A2189F800786911 /* DetailTableViewCell.xib */,
-				C8A4579C1A2189F800786911 /* DetailTableViewController.h */,
-				C8A4579D1A2189F800786911 /* DetailTableViewController.m */,
+				C8AE17B81A232E7A0075C9FB /* TradeDetailViewController.h */,
+				C8AE17B91A232E7A0075C9FB /* TradeDetailViewController.m */,
+				C8AE17BA1A232E7A0075C9FB /* TradeDetailViewController.xib */,
 			);
 			name = "交易详情";
 			sourceTree = "<group>";
@@ -1842,6 +1851,26 @@
 				C8A457D11A2189F800786911 /* MessageCheckViewController.xib */,
 			);
 			name = "消息验证";
+			sourceTree = "<group>";
+		};
+		C8AE17A51A22FE2E0075C9FB /* 没有绑定银行卡 */ = {
+			isa = PBXGroup;
+			children = (
+				C8A457D21A2189F800786911 /* NoMoneyViewController.h */,
+				C8A457D31A2189F800786911 /* NoMoneyViewController.m */,
+				C8A457D41A2189F800786911 /* NoMoneyViewController.xib */,
+			);
+			name = "没有绑定银行卡";
+			sourceTree = "<group>";
+		};
+		C8AE17AE1A231A0C0075C9FB /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				C8AE17AF1A231A360075C9FB /* BalanceViewCell.h */,
+				C8AE17B01A231A360075C9FB /* BalanceViewCell.m */,
+				C8AE17B11A231A360075C9FB /* BalanceViewCell.xib */,
+			);
+			name = cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1980,6 +2009,7 @@
 				C8A458D31A2189F900786911 /* 订单详情_14.png in Resources */,
 				C8A458F41A2189F900786911 /* FootView.xib in Resources */,
 				C8A458841A2189F900786911 /* 导航－40-3-橙@2x.png in Resources */,
+				C8AE17B31A231A360075C9FB /* BalanceViewCell.xib in Resources */,
 				C8A458A21A2189F900786911 /* 打开摄像头_03.png in Resources */,
 				C8A458261A2189F900786911 /* bubble-square-incoming@2x.png in Resources */,
 				C8A458CD1A2189F900786911 /* 验证快递员信息_14.png in Resources */,
@@ -1997,6 +2027,7 @@
 				C8A458331A2189F900786911 /* PhotoIcon.png in Resources */,
 				C8A458651A2189F900786911 /* 推荐好友_03.png in Resources */,
 				C8A4586D1A2189F900786911 /* tabBar-2.png in Resources */,
+				C8AE17BC1A232E7A0075C9FB /* TradeDetailViewController.xib in Resources */,
 				C8A458AB1A2189F900786911 /* 111_01.jpg in Resources */,
 				C8A4584C1A2189F900786911 /* zbar-back.png in Resources */,
 				C8A458541A2189F900786911 /* bg_07.jpg in Resources */,
@@ -2048,7 +2079,6 @@
 				C8A4588C1A2189F900786911 /* 1_06.png in Resources */,
 				C8A458B71A2189F900786911 /* 注册登录_04.png in Resources */,
 				C8A458361A2189F900786911 /* send-highlighted@2x.png in Resources */,
-				C8A458E71A2189F900786911 /* DetailTableViewCell.xib in Resources */,
 				C8A458291A2189F900786911 /* bubble-square-outgoing.png in Resources */,
 				C8A458111A2189F900786911 /* bubble-default-incoming.png in Resources */,
 				C8A458941A2189F900786911 /* 3_21.png in Resources */,
@@ -2163,7 +2193,6 @@
 				C8A457FD1A2189F900786911 /* UIImageView+AFNetworking.m in Sources */,
 				C8A458EA1A2189F900786911 /* DidDealViewCell.m in Sources */,
 				C8A458E41A2189F900786911 /* CheckPhoneViewController.m in Sources */,
-				C8A458E61A2189F900786911 /* DetailTableViewCell.m in Sources */,
 				C8A458411A2189F900786911 /* MJRefreshConst.m in Sources */,
 				C8A457F61A2189F900786911 /* AFImageRequestOperation.m in Sources */,
 				C8A458431A2189F900786911 /* MJRefreshHeaderView.m in Sources */,
@@ -2187,6 +2216,7 @@
 				C8A456211A2189BD00786911 /* AppDelegate.m in Sources */,
 				C8A459111A2189F900786911 /* ScanCodeViewController.m in Sources */,
 				C8A457FC1A2189F900786911 /* AFXMLRequestOperation.m in Sources */,
+				C8AE17B61A231D7A0075C9FB /* BalanceModel.m in Sources */,
 				C8A458461A2189F900786911 /* UIView+Extension.m in Sources */,
 				C8A459151A2189F900786911 /* ShouYeViewController.m in Sources */,
 				C8A4590F1A2189F900786911 /* RegisterViewController.m in Sources */,
@@ -2201,10 +2231,12 @@
 				C8A4590A1A2189F900786911 /* NoMoneyViewController.m in Sources */,
 				C8A458001A2189F900786911 /* GuGuLandscapeTableView.m in Sources */,
 				C8A459021A2189F900786911 /* HistoryViewController.m in Sources */,
+				C8AE17AD1A22FFA80075C9FB /* BalanceViewController.m in Sources */,
 				C8A457F51A2189F900786911 /* AFHTTPRequestOperation.m in Sources */,
 				C8A458091A2189F900786911 /* JSMessageSoundEffect.m in Sources */,
 				C8A458FC1A2189F900786911 /* HandViewController.m in Sources */,
 				C8A459171A2189F900786911 /* TakeOutMoneyViewController.m in Sources */,
+				C8AE17B21A231A360075C9FB /* BalanceViewCell.m in Sources */,
 				C8A458011A2189F900786911 /* GuGuSegmentBarView.m in Sources */,
 				C8A4591B1A2189F900786911 /* WaitViewController.m in Sources */,
 				C8A458061A2189F900786911 /* JSBubbleView.m in Sources */,
@@ -2225,10 +2257,10 @@
 				C8A4583D1A2189F900786911 /* UIImage+JSMessagesView.m in Sources */,
 				C8A459081A2189F900786911 /* MessageCheckViewController.m in Sources */,
 				C8A458081A2189F900786911 /* JSMessageInputView.m in Sources */,
+				C8AE17BB1A232E7A0075C9FB /* TradeDetailViewController.m in Sources */,
 				C8A458031A2189F900786911 /* LJFScollerViewController.m in Sources */,
 				C8A458F71A2189F900786911 /* GeRenViewController.m in Sources */,
 				C8A458441A2189F900786911 /* UIScrollView+Extension.m in Sources */,
-				C8A458E81A2189F900786911 /* DetailTableViewController.m in Sources */,
 				C8A457F91A2189F900786911 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				C8A459191A2189F900786911 /* TGetPasswordViewController.m in Sources */,
 				C8A458041A2189F900786911 /* Helper.m in Sources */,
