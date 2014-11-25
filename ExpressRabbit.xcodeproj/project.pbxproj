@@ -333,6 +333,10 @@
 		C8AE17B61A231D7A0075C9FB /* BalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE17B51A231D7A0075C9FB /* BalanceModel.m */; };
 		C8AE17BB1A232E7A0075C9FB /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE17B91A232E7A0075C9FB /* TradeDetailViewController.m */; };
 		C8AE17BC1A232E7A0075C9FB /* TradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AE17BA1A232E7A0075C9FB /* TradeDetailViewController.xib */; };
+		C8AE17C21A24356F0075C9FB /* NoBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE17C01A24356F0075C9FB /* NoBillViewController.m */; };
+		C8AE17C31A24356F0075C9FB /* NoBillViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AE17C11A24356F0075C9FB /* NoBillViewController.xib */; };
+		C8AE17C81A246D480075C9FB /* LinkBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE17C61A246D480075C9FB /* LinkBankViewController.m */; };
+		C8AE17C91A246D480075C9FB /* LinkBankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AE17C71A246D480075C9FB /* LinkBankViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -397,8 +401,8 @@
 		C8A456661A2189F800786911 /* GuGuSegmentBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuGuSegmentBarView.m; sourceTree = "<group>"; };
 		C8A456671A2189F800786911 /* GuGuSegmentNaviViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuGuSegmentNaviViewController.h; sourceTree = "<group>"; };
 		C8A456681A2189F800786911 /* GuGuSegmentNaviViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuGuSegmentNaviViewController.m; sourceTree = "<group>"; };
-		C8A456691A2189F800786911 /* LJFScollerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJFScollerViewController.h; sourceTree = "<group>"; };
-		C8A4566A1A2189F800786911 /* LJFScollerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJFScollerViewController.m; sourceTree = "<group>"; };
+		C8A456691A2189F800786911 /* LJFScollerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LJFScollerViewController.h; path = ../libs/GuGuSegmentNavigationController/LJFScollerViewController.h; sourceTree = "<group>"; };
+		C8A4566A1A2189F800786911 /* LJFScollerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LJFScollerViewController.m; path = ../libs/GuGuSegmentNavigationController/LJFScollerViewController.m; sourceTree = "<group>"; };
 		C8A4566B1A2189F800786911 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Header.h; path = libs/Header.h; sourceTree = "<group>"; };
 		C8A4566C1A2189F800786911 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		C8A4566D1A2189F800786911 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
@@ -777,6 +781,12 @@
 		C8AE17B81A232E7A0075C9FB /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		C8AE17B91A232E7A0075C9FB /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
 		C8AE17BA1A232E7A0075C9FB /* TradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeDetailViewController.xib; sourceTree = "<group>"; };
+		C8AE17BF1A24356F0075C9FB /* NoBillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoBillViewController.h; sourceTree = "<group>"; };
+		C8AE17C01A24356F0075C9FB /* NoBillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoBillViewController.m; sourceTree = "<group>"; };
+		C8AE17C11A24356F0075C9FB /* NoBillViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoBillViewController.xib; sourceTree = "<group>"; };
+		C8AE17C51A246D480075C9FB /* LinkBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkBankViewController.h; sourceTree = "<group>"; };
+		C8AE17C61A246D480075C9FB /* LinkBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkBankViewController.m; sourceTree = "<group>"; };
+		C8AE17C71A246D480075C9FB /* LinkBankViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkBankViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -981,8 +991,6 @@
 				C8A456661A2189F800786911 /* GuGuSegmentBarView.m */,
 				C8A456671A2189F800786911 /* GuGuSegmentNaviViewController.h */,
 				C8A456681A2189F800786911 /* GuGuSegmentNaviViewController.m */,
-				C8A456691A2189F800786911 /* LJFScollerViewController.h */,
-				C8A4566A1A2189F800786911 /* LJFScollerViewController.m */,
 			);
 			path = GuGuSegmentNavigationController;
 			sourceTree = "<group>";
@@ -1509,6 +1517,8 @@
 		C8AE17841A22BE390075C9FB /* 订单管理 */ = {
 			isa = PBXGroup;
 			children = (
+				C8A456691A2189F800786911 /* LJFScollerViewController.h */,
+				C8A4566A1A2189F800786911 /* LJFScollerViewController.m */,
 				C8AE17951A22C0D70075C9FB /* 手动录入 */,
 				C8AE17941A22C0CD0075C9FB /* 扫描条形码 */,
 				C8AE17931A22C0B90075C9FB /* 订单详情 */,
@@ -1561,12 +1571,12 @@
 		C8AE17881A22BEB20075C9FB /* 我的余额 */ = {
 			isa = PBXGroup;
 			children = (
-				C8AE17AB1A22FFA80075C9FB /* BalanceViewController.h */,
-				C8AE17AC1A22FFA80075C9FB /* BalanceViewController.m */,
-				C8AE17AE1A231A0C0075C9FB /* cell */,
+				C8AE17BE1A2435170075C9FB /* 没有流水 */,
+				C8AE17BD1A2435060075C9FB /* 有流水 */,
 				C8AE17A41A22C3F30075C9FB /* 消息验证 */,
 				C8AE17A31A22C3C90075C9FB /* 交易详情 */,
 				C8AE17A21A22C3BB0075C9FB /* 银行卡资料 */,
+				C8AE17C41A246D150075C9FB /* 没有银行卡绑定 */,
 				C8AE17A11A22C3AC0075C9FB /* 手机验证 */,
 				C8AE17A01A22C3970075C9FB /* 转出金额 */,
 				C8AE179F1A22C3820075C9FB /* 绑定银行卡 */,
@@ -1873,6 +1883,36 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
+		C8AE17BD1A2435060075C9FB /* 有流水 */ = {
+			isa = PBXGroup;
+			children = (
+				C8AE17AB1A22FFA80075C9FB /* BalanceViewController.h */,
+				C8AE17AC1A22FFA80075C9FB /* BalanceViewController.m */,
+				C8AE17AE1A231A0C0075C9FB /* cell */,
+			);
+			name = "有流水";
+			sourceTree = "<group>";
+		};
+		C8AE17BE1A2435170075C9FB /* 没有流水 */ = {
+			isa = PBXGroup;
+			children = (
+				C8AE17BF1A24356F0075C9FB /* NoBillViewController.h */,
+				C8AE17C01A24356F0075C9FB /* NoBillViewController.m */,
+				C8AE17C11A24356F0075C9FB /* NoBillViewController.xib */,
+			);
+			name = "没有流水";
+			sourceTree = "<group>";
+		};
+		C8AE17C41A246D150075C9FB /* 没有银行卡绑定 */ = {
+			isa = PBXGroup;
+			children = (
+				C8AE17C51A246D480075C9FB /* LinkBankViewController.h */,
+				C8AE17C61A246D480075C9FB /* LinkBankViewController.m */,
+				C8AE17C71A246D480075C9FB /* LinkBankViewController.xib */,
+			);
+			name = "没有银行卡绑定";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2036,6 +2076,7 @@
 				C8A4585F1A2189F900786911 /* 个人中心_32_06.png in Resources */,
 				C8A4581F1A2189F900786911 /* bubble-flat-outgoing-selected.png in Resources */,
 				C8A459181A2189F900786911 /* TakeOutMoneyViewController.xib in Resources */,
+				C8AE17C31A24356F0075C9FB /* NoBillViewController.xib in Resources */,
 				C8A458881A2189F900786911 /* 导航－40-4-橙@2x.png in Resources */,
 				C8A4582E1A2189F900786911 /* input-bar-flat@2x.png in Resources */,
 				C8A458F21A2189F900786911 /* FillMessageViewController.xib in Resources */,
@@ -2105,6 +2146,7 @@
 				C8A458ED1A2189F900786911 /* DuanXinViewCell.xib in Resources */,
 				C8A4583F1A2189F900786911 /* MJRefresh.bundle in Resources */,
 				C8A4584F1A2189F900786911 /* zbar-samples.png in Resources */,
+				C8AE17C91A246D480075C9FB /* LinkBankViewController.xib in Resources */,
 				C8A458201A2189F900786911 /* bubble-flat-outgoing-selected@2x.png in Resources */,
 				C8A458571A2189F900786911 /* 个人中心-设置_08.png in Resources */,
 				C8A458251A2189F900786911 /* bubble-square-incoming.png in Resources */,
@@ -2205,6 +2247,7 @@
 				C8A457F81A2189F900786911 /* AFJSONUtilities.m in Sources */,
 				C8A459031A2189F900786911 /* KuaiDiViewCell.m in Sources */,
 				C8A459131A2189F900786911 /* ShareViewController.m in Sources */,
+				C8AE17C81A246D480075C9FB /* LinkBankViewController.m in Sources */,
 				C8A459051A2189F900786911 /* KuaiDiViewController.m in Sources */,
 				C8A458451A2189F900786911 /* UIScrollView+MJRefresh.m in Sources */,
 				C8A458051A2189F900786911 /* JSBubbleMessageCell.m in Sources */,
@@ -2231,6 +2274,7 @@
 				C8A4590A1A2189F900786911 /* NoMoneyViewController.m in Sources */,
 				C8A458001A2189F900786911 /* GuGuLandscapeTableView.m in Sources */,
 				C8A459021A2189F900786911 /* HistoryViewController.m in Sources */,
+				C8AE17C21A24356F0075C9FB /* NoBillViewController.m in Sources */,
 				C8AE17AD1A22FFA80075C9FB /* BalanceViewController.m in Sources */,
 				C8A457F51A2189F900786911 /* AFHTTPRequestOperation.m in Sources */,
 				C8A458091A2189F900786911 /* JSMessageSoundEffect.m in Sources */,

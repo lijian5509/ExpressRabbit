@@ -183,7 +183,7 @@ INPUTACCESSVIEW
             return ;
         }else{
             NSNumber *checkStatus=dataDict[@"result"][@"checkStatus"];
-            if ([checkStatus boolValue]) {
+            if (![checkStatus boolValue]) {
                 [self showAlertViewWithMaessage:@"该用户未激活，请到注册界面激活"];
                 return;
             }
@@ -214,48 +214,64 @@ INPUTACCESSVIEW
         return;
     }else{
         GET_PLISTdICT
-//        [dictPlist setValue:@"1" forKey:@"isLog"];
+
         [dictPlist setValue:@"1" forKey:@"exit"];
         [dictPlist setValue:[userId stringValue] forKey:@"id"];
         [dictPlist setValue:[verSion stringValue] forKey:@"version"];
         [dictPlist setValue:dict[@"result"][@"mobile"] forKey:@"regMobile"];
         [dictPlist setValue:dict[@"result"][@"username"] forKey:@"username"];
+        
         NSString *postPath = [NSString stringWithFormat:CESHIZONG,GETMORENWANGDIAN];
         [aClient postPath:postPath parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *dict1=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-            NSString *resultId=dict1[@"result"];
+            NSString *resultId=dict1[@"result"];//后台测试人员 个人信息已完善
             if (![resultId isEqualToString:[netSiteId stringValue]]) {
-                [dictPlist setValue:@"1" forKey:@"isTureNetSite"];
+                [dictPlist setValue:@"1" forKey:@"isTureNetSite"];//1代表已经完善信息 0代表没有
                 [dictPlist setValue:[netSiteId stringValue] forKey:@"netSiteId"];
                 [dictPlist writeToFile:filePatn atomically:YES];
+                [self changeRootViewController];
+                
             }else{
                 //每次登陆都要获取完善信息判断是否完善信息，是否激活
-                
                 NSString *urlPath=[NSString stringWithFormat:CESHIZONG,GETWANSHANGXINXI];
+                
                 [aClient postPath:urlPath parameters:@{@"regMobile": dict[@"result"][@"mobile"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
                     NSDictionary *wDict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
                     BOOL isFillMessage=[(NSNumber *)wDict[@"success"] boolValue];
-                    NSNumber *checkStatus=wDict[@"result"][@"checkStatus"];
+                    NSLog(@"%@",wDict);
+                   
                     if (isFillMessage) {
+                         NSNumber *checkStatus=wDict[@"result"][@"checkStatus"];
                         [dictPlist setValue:[checkStatus stringValue] forKey:@"checkStatus"];
                         [dictPlist setValue:@"1" forKey:@"isTureNetSite"];
                         [dictPlist writeToFile:filePatn atomically:YES];
+                        [self changeRootViewController];
+                    }else{
+                        [self changeRootViewController];
                     }
-                } failure:nil];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [self showAlertViewWithMaessage:@"网络错误"];
+                }];
                 [dictPlist setValue:[netSiteId stringValue] forKey:@"netSiteId"];
                 [dictPlist writeToFile:filePatn atomically:YES];
             }
-            [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isLog"];//记录用户已登录 下次直接加载主页面
-            UIApplication *app=[UIApplication sharedApplication];
-            AppDelegate *app2=app.delegate;
-            app2.window.rootViewController=[TabBarViewController shareTabBar];
-
+            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self showAlertViewWithMaessage:@"网络异常"];
         }];
         
     }
 }
+
+#pragma mark - 切换视图控制器
+-(void)changeRootViewController{
+    UIApplication *app=[UIApplication sharedApplication];
+    AppDelegate *app2=app.delegate;
+    app2.window.rootViewController=[TabBarViewController shareTabBar];
+
+}
+
 //显示警告框
 - (void) showAlertViewWithMaessage:(NSString *)title{
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

@@ -11,6 +11,8 @@
 #import "BalanceViewCell.h"
 #import "BalanceModel.h"
 #import "TradeDetailViewController.h"
+#import "BankDetailViewController.h"
+#import "LinkBankViewController.h"
 
 
 @interface BalanceViewController ()
@@ -141,7 +143,22 @@
 }
 
 -(void)btnClicked:(UIButton *)btn{
-    
+    //查看银行卡是否绑定
+    NSString *urlPatn=[NSString stringWithFormat:CESHIZONG,GETYINHANGKAXINXI];//得到银行卡信息
+    GET_PLISTdICT
+    [_client postPath:urlPatn parameters:@{@"couriedId": dictPlist[@"id"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        BOOL isSuccess=[(NSNumber *)dict[@"success"] boolValue];
+        if (isSuccess) {
+            BankDetailViewController *balance=[[BankDetailViewController alloc]init];
+            [self.navigationController pushViewController:balance animated:YES];
+        }else{
+            LinkBankViewController *no=[[LinkBankViewController alloc]init];
+            [self.navigationController pushViewController:no animated:YES];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showAlertViewWithMaessage:@"网络错误" title:@"提示" otherBtn:nil];
+    }];
 }
 
 -(void)downloadSuccessWith:(id)responseObject{

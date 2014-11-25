@@ -7,14 +7,13 @@
 //
 
 #import "LJFScollerViewController.h"
-
-#import "LogInViewController.h"
-#import "TabBarViewController.h"
-#import "FillMessageViewController.h"
-#import "AppDelegate.h"
-#import "WaitViewController.h"
-
-#import "FialViewController.h"
+//#import "LogInViewController.h"
+//#import "TabBarViewController.h"
+//#import "FillMessageViewController.h"
+//#import "AppDelegate.h"
+//#import "WaitViewController.h"
+//
+//#import "FialViewController.h"
 
 @interface LJFScollerViewController ()<UIScrollViewDelegate>
 {

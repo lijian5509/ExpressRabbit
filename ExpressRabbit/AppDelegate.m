@@ -19,8 +19,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    BOOL isFirst=[[[NSUserDefaults standardUserDefaults]objectForKey:@"first"]boolValue];
+    if (!isFirst) {//plist文件创建一次
+        [self creatPlistFile];
+        [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"first"];
+    }
     
-    [self creatPlistFile];
     self.window.rootViewController=[TabBarViewController shareTabBar];
     
     self.window.backgroundColor = [UIColor whiteColor];

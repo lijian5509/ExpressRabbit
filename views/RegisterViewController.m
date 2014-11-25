@@ -195,9 +195,21 @@ INPUTACCESSVIEW
                         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                             NSLog(@"%@",error);
                         }];
+                        [_timer setFireDate:[NSDate distantPast]];//block内无法开启线程
+                    }else{//判断是否激活
+                        NSNumber *checkStatus=dataDict[@"result"][@"checkStatus"];
+                        if ([checkStatus boolValue]) {
+                            [self showAlertViewWithMaessage:@"该用户已激活，请到登录界面登录"];
+                            return;
+                        }
+                        NSString *postPath=[NSString stringWithFormat:CESHIZONG,FASONGYANZHENG];
+                        [aClient postPath:postPath parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                            [self showAlertViewWithMaessage:@"验证码已发送，请注意查收,5分钟后失效！"];
+                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                            NSLog(@"%@",error);
+                        }];
                         [_timer setFireDate:[NSDate distantPast]];
-                    }else{
-                        [self showAlertViewWithMaessage:@"该号码已经注册"];
+
                     }
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"%@",error);

@@ -54,8 +54,6 @@
     NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
     
     BOOL n=[(NSNumber *)dict[@"success"] boolValue];
-   
-    
     if (n) {
         GET_PLISTdICT
         //        [dictPlist setValue:@"1" forKey:@"isLog"];
@@ -63,8 +61,9 @@
         [_client postPath:urlPath parameters:@{@"regMobile": dict[@"result"][@"mobile"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *wDict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
             BOOL isFillMessage=[(NSNumber *)wDict[@"success"] boolValue];
-            NSNumber *checkStatus=wDict[@"result"][@"checkStatus"];
+           
             if (isFillMessage) {
+                 NSNumber *checkStatus=wDict[@"result"][@"checkStatus"];
                 [dictPlist setValue:[checkStatus stringValue] forKey:@"checkStatus"];
                 [dictPlist setValue:@"1" forKey:@"isTureNetSite"];
                 NSNumber *userId=dict[@"result"][@"id"];

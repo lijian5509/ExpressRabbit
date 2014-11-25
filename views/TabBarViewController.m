@@ -26,6 +26,7 @@
     return self;
 }
 
+
 #pragma mark - 创建一个非标准的单例 
 +(TabBarViewController *)shareTabBar{
     static TabBarViewController *Tab = nil;
@@ -44,8 +45,8 @@
     self.tabBar.barTintColor=[UIColor whiteColor];
     self.tabBar.translucent=NO;
     [self creatSystemBar];
-    
 }
+
 
 #pragma mark 调用系统的tabBar
 -(void)creatSystemBar{

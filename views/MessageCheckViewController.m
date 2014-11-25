@@ -8,7 +8,7 @@
 
 #import "MessageCheckViewController.h"
 #import "BankDetailViewController.h"
-#import "DetailTableViewController.h"
+
 
 @interface MessageCheckViewController ()
 
@@ -53,9 +53,9 @@
 }
 
 - (IBAction)btnClicked:(UIButton *)sender {
-    DetailTableViewController *bank=[[DetailTableViewController alloc]init];
+   
     self.hidesBottomBarWhenPushed=YES;
-    [self.navigationController pushViewController:bank animated:YES];
+    
     
 }
 @end

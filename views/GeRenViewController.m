@@ -49,9 +49,9 @@
     GET_PLISTMEMBER(@"exit")
     NSString *exit=member;
     if ([exit isEqualToString:@"1"]) {
-        [self getUserMassege];
         _headView=[[[NSBundle mainBundle]loadNibNamed:@"HeadView" owner:self options:nil]lastObject] ;
         self.tableView.tableHeaderView=_headView;
+        [self getUserMassege];
     }else{
         UILabel *label=[MyControl creatLabelWithFrame:CGRectMake(0, 0, 320, 90) text:@"您还未登录"];
         label.textAlignment=NSTextAlignmentCenter;
@@ -77,9 +77,21 @@
     NSDictionary *userDict = @{@"courierId":userId};
     [_client postPath:userUrl parameters:userDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-        _headView.nameLabel.text=dataDict[@"result"][@"realname"];
-        _headView.phoneLabel.text=dataDict[@"result"][@"mobile"];
-        _headView.addressLabel.text=dataDict[@"result"][@"netSite"][@"name"];
+        BOOL isSuccess=[(NSNumber *)dataDict[@"success"] boolValue];
+        NSLog(@"%@",dataDict[@"result"][@"realname"]);
+        if (isSuccess) {
+            if (dataDict[@"result"][@"realname"]!=[NSNull null]) {
+                _headView.nameLabel.text=dataDict[@"result"][@"realname"];
+            }else{
+                _headView.nameLabel.text=@"null";
+            }
+            _headView.phoneLabel.text=dataDict[@"result"][@"mobile"];
+            if (dataDict[@"result"][@"netSite"][@"name"]) {
+                _headView.addressLabel.text=dataDict[@"result"][@"netSite"][@"name"];
+            }
+            
+        }
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showAlertViewWithMaessage:@"网络错误" title:@"提示" otherBtn:nil];
     }];
@@ -158,8 +170,19 @@
                 [self showAlertViewWithMaessage:@"你还没有登录！" title:@"登录提醒" otherBtn:@"登录"];
                 return;
             }
-            [self checkUserStatus];
-            NSString *urlPatn=[NSString stringWithFormat:CESHIZONG,GETBANKCARKMESSASGE];
+            //查看是否退出登录
+            if (![exit isEqualToString:@"1"]) {
+                LogInViewController *log=[[LogInViewController alloc]init];
+                UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:log];
+                UIApplication *app=[UIApplication sharedApplication];
+                AppDelegate *app2=app.delegate;
+                app2.window.rootViewController=nil;
+                app2.window.rootViewController=nav;
+                return ;
+            }
+            CHECKSTATUS
+            NSString *urlPatn=[NSString stringWithFormat:CESHIZONG,ZHANGDANCHAXUN];//查看流水
+            
             [_client postPath:urlPatn parameters:@{@"couriedId": dictPlist[@"id"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
                 BOOL isSuccess=[(NSNumber *)dict[@"success"] boolValue];
@@ -191,7 +214,6 @@
             break;
         case 3://设置
         {
-            
             SheZhiViewController *shezhi=[[SheZhiViewController alloc]init];
             [self.navigationController pushViewController:shezhi animated:YES];
         }
@@ -203,23 +225,7 @@
     self.hidesBottomBarWhenPushed=NO;
     
 }
-#pragma mark - 页面将要显示的时候先判断是否完善信息和是否激活
-- (void)checkUserStatus{
-   GET_PLISTdICT
-    //查看是否退出登录
-    NSString *exit=dictPlist[@"exit"];
-    if (![exit isEqualToString:@"1"]) {
-        LogInViewController *log=[[LogInViewController alloc]init];
-        UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:log];
-        UIApplication *app=[UIApplication sharedApplication];
-        AppDelegate *app2=app.delegate;
-        app2.window.rootViewController=nil;
-        app2.window.rootViewController=nav;
-        return ;
-    }
 
-   CHECKSTATUS
-}
 //显示警告框
 - (void) showAlertViewWithMaessage:(NSString *)message title:(NSString *)title otherBtn:(NSString *)btnT {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:btnT, nil];
@@ -250,44 +256,6 @@
     
 }
 
-/*
-// Override to support conditional edi
- ting of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

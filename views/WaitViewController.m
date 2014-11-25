@@ -32,13 +32,11 @@
     [tab.view reloadInputViews];
     UIApplication *app=[UIApplication sharedApplication];
     AppDelegate *app2=app.delegate;
-    app2.window.rootViewController=nil;
-    app2.window.rootViewController=tab;
     [tab creatSystemBar];
     tab.selectedIndex=0;
+    app2.window.rootViewController=tab;
     
 }
-
 
 - (void)viewDidLoad
 {

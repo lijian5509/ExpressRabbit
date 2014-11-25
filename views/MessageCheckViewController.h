@@ -13,5 +13,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIImageView *smallTitleView;
 @property (weak, nonatomic) IBOutlet UIButton *testBtn;
+@property (nonatomic, copy) NSString *cashNum;
+
+
 
 @end

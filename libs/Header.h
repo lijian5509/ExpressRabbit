@@ -91,10 +91,12 @@ if ([isWanShan isEqualToString:@"0"]) {\
 NSString *isJiHuo=dictPlist[@"checkStatus"];\
 if ([isJiHuo isEqualToString:@"0"]) {\
     FialViewController *wait=[[FialViewController alloc]init];\
+    self.hidesBottomBarWhenPushed=YES;\
     [self.navigationController pushViewController:wait animated:YES];\
     return;\
 }else if ([isJiHuo isEqualToString:@"2"]){\
     WaitViewController *wait=[[WaitViewController alloc]init];\
+    self.hidesBottomBarWhenPushed=YES;\
     [self.navigationController pushViewController:wait animated:YES];\
     return;\
 }\

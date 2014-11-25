@@ -16,5 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *IdLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yuanLabel;
+@property (nonatomic, copy) NSMutableArray *dataArray;
+
+
+
 
 @end

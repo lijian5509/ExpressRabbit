@@ -15,4 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *textBtn;
 
 - (IBAction)btnClicked:(UIButton *)sender;
+
+@property (nonatomic,copy)NSMutableArray *dataArray;
+
+
 @end
