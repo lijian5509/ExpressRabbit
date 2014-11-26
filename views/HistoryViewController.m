@@ -64,7 +64,7 @@
        
         _isRefreshinging=YES;
         _currentPage++;
-       [client postPath:urlPath parameters:@{@"courierId": dictPlist[@"id"],@"page":[NSString stringWithFormat:@"%d",_currentPage],@"pageNum":@"10"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+       [client postPath:urlPath parameters:@{@"courierId": dictPlist[@"id"],@"page":[NSString stringWithFormat:@"%ld",_currentPage],@"pageNum":@"10"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
            [self downloadSuccessWithData:responseObject];
        } failure:nil];
         

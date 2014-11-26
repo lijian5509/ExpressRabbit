@@ -27,14 +27,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self getBackKeybord];
+    BACKKEYITEM;
 }
-
+-(void)getBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+//二级键盘
+INPUTACCESSVIEW
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)btnClicked:(UIButton *)sender {
     if (self.nameTextField.text.length==0) {
@@ -74,7 +80,7 @@
 
 //显示警告框
 - (void) showAlertViewWithMaessage:(NSString *)message title:(NSString *)title otherBtn:(NSString *)btnT {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:btnT, nil];
+   UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
     [alert show];
 }
 

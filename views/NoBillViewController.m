@@ -26,7 +26,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    BACKKEYITEM;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    TabBarViewController *tab=[TabBarViewController shareTabBar];
+    tab.tabBar.hidden=YES;
+}
+
+//导航栏返回键
+-(void)getBack{
+    TabBarViewController *tab=[TabBarViewController shareTabBar];
+    tab.tabBar.hidden=NO;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +70,7 @@
 }
 //显示警告框
 - (void) showAlertViewWithMaessage:(NSString *)message title:(NSString *)title otherBtn:(NSString *)btnT {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:btnT, nil];
+     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
     [alert show];
 }
 

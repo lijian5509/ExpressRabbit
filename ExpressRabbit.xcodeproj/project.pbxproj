@@ -283,8 +283,6 @@
 		C8A458F71A2189F900786911 /* GeRenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457B51A2189F800786911 /* GeRenViewController.m */; };
 		C8A458F81A2189F900786911 /* GetBackPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457B71A2189F800786911 /* GetBackPasswordViewController.m */; };
 		C8A458F91A2189F900786911 /* GetBackPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457B81A2189F800786911 /* GetBackPasswordViewController.xib */; };
-		C8A458FA1A2189F900786911 /* GetBankCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457BA1A2189F800786911 /* GetBankCardViewController.m */; };
-		C8A458FB1A2189F900786911 /* GetBankCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457BB1A2189F800786911 /* GetBankCardViewController.xib */; };
 		C8A458FC1A2189F900786911 /* HandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457BD1A2189F800786911 /* HandViewController.m */; };
 		C8A458FD1A2189F900786911 /* HandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457BE1A2189F800786911 /* HandViewController.xib */; };
 		C8A458FE1A2189F900786911 /* HeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457C01A2189F800786911 /* HeadView.m */; };
@@ -299,8 +297,6 @@
 		C8A459071A2189F900786911 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457CE1A2189F800786911 /* LogInViewController.xib */; };
 		C8A459081A2189F900786911 /* MessageCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457D01A2189F800786911 /* MessageCheckViewController.m */; };
 		C8A459091A2189F900786911 /* MessageCheckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457D11A2189F800786911 /* MessageCheckViewController.xib */; };
-		C8A4590A1A2189F900786911 /* NoMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457D31A2189F800786911 /* NoMoneyViewController.m */; };
-		C8A4590B1A2189F900786911 /* NoMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457D41A2189F800786911 /* NoMoneyViewController.xib */; };
 		C8A4590C1A2189F900786911 /* OrderDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457D61A2189F800786911 /* OrderDetailViewCell.m */; };
 		C8A4590D1A2189F900786911 /* OrderDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A457D71A2189F800786911 /* OrderDetailViewCell.xib */; };
 		C8A4590E1A2189F900786911 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A457D91A2189F800786911 /* OrderDetailViewController.m */; };
@@ -706,9 +702,6 @@
 		C8A457B61A2189F800786911 /* GetBackPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetBackPasswordViewController.h; sourceTree = "<group>"; };
 		C8A457B71A2189F800786911 /* GetBackPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetBackPasswordViewController.m; sourceTree = "<group>"; };
 		C8A457B81A2189F800786911 /* GetBackPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetBackPasswordViewController.xib; sourceTree = "<group>"; };
-		C8A457B91A2189F800786911 /* GetBankCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetBankCardViewController.h; sourceTree = "<group>"; };
-		C8A457BA1A2189F800786911 /* GetBankCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetBankCardViewController.m; sourceTree = "<group>"; };
-		C8A457BB1A2189F800786911 /* GetBankCardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetBankCardViewController.xib; sourceTree = "<group>"; };
 		C8A457BC1A2189F800786911 /* HandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandViewController.h; sourceTree = "<group>"; };
 		C8A457BD1A2189F800786911 /* HandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandViewController.m; sourceTree = "<group>"; };
 		C8A457BE1A2189F800786911 /* HandViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandViewController.xib; sourceTree = "<group>"; };
@@ -731,9 +724,6 @@
 		C8A457CF1A2189F800786911 /* MessageCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCheckViewController.h; sourceTree = "<group>"; };
 		C8A457D01A2189F800786911 /* MessageCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCheckViewController.m; sourceTree = "<group>"; };
 		C8A457D11A2189F800786911 /* MessageCheckViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCheckViewController.xib; sourceTree = "<group>"; };
-		C8A457D21A2189F800786911 /* NoMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoMoneyViewController.h; sourceTree = "<group>"; };
-		C8A457D31A2189F800786911 /* NoMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoMoneyViewController.m; sourceTree = "<group>"; };
-		C8A457D41A2189F800786911 /* NoMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoMoneyViewController.xib; sourceTree = "<group>"; };
 		C8A457D51A2189F800786911 /* OrderDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewCell.h; sourceTree = "<group>"; };
 		C8A457D61A2189F800786911 /* OrderDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewCell.m; sourceTree = "<group>"; };
 		C8A457D71A2189F800786911 /* OrderDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailViewCell.xib; sourceTree = "<group>"; };
@@ -1550,7 +1540,6 @@
 				C8AE178B1A22BEDA0075C9FB /* 设置 */,
 				C8AE178A1A22BECB0075C9FB /* 意见反馈 */,
 				C8AE17891A22BEBB0075C9FB /* 分享有惊喜 */,
-				C8AE17A51A22FE2E0075C9FB /* 没有绑定银行卡 */,
 				C8AE17881A22BEB20075C9FB /* 我的余额 */,
 			);
 			name = "个人中心";
@@ -1579,7 +1568,6 @@
 				C8AE17C41A246D150075C9FB /* 没有银行卡绑定 */,
 				C8AE17A11A22C3AC0075C9FB /* 手机验证 */,
 				C8AE17A01A22C3970075C9FB /* 转出金额 */,
-				C8AE179F1A22C3820075C9FB /* 绑定银行卡 */,
 			);
 			name = "我的余额";
 			sourceTree = "<group>";
@@ -1803,16 +1791,6 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
-		C8AE179F1A22C3820075C9FB /* 绑定银行卡 */ = {
-			isa = PBXGroup;
-			children = (
-				C8A457B91A2189F800786911 /* GetBankCardViewController.h */,
-				C8A457BA1A2189F800786911 /* GetBankCardViewController.m */,
-				C8A457BB1A2189F800786911 /* GetBankCardViewController.xib */,
-			);
-			name = "绑定银行卡";
-			sourceTree = "<group>";
-		};
 		C8AE17A01A22C3970075C9FB /* 转出金额 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1861,16 +1839,6 @@
 				C8A457D11A2189F800786911 /* MessageCheckViewController.xib */,
 			);
 			name = "消息验证";
-			sourceTree = "<group>";
-		};
-		C8AE17A51A22FE2E0075C9FB /* 没有绑定银行卡 */ = {
-			isa = PBXGroup;
-			children = (
-				C8A457D21A2189F800786911 /* NoMoneyViewController.h */,
-				C8A457D31A2189F800786911 /* NoMoneyViewController.m */,
-				C8A457D41A2189F800786911 /* NoMoneyViewController.xib */,
-			);
-			name = "没有绑定银行卡";
 			sourceTree = "<group>";
 		};
 		C8AE17AE1A231A0C0075C9FB /* cell */ = {
@@ -1997,7 +1965,6 @@
 				C8A4580D1A2189F900786911 /* bubble-default-incoming-green.png in Resources */,
 				C8A458DB1A2189F900786911 /* 首页图片_03.png in Resources */,
 				C8A4591A1A2189F900786911 /* TGetPasswordViewController.xib in Resources */,
-				C8A458FB1A2189F900786911 /* GetBankCardViewController.xib in Resources */,
 				C8A4581E1A2189F900786911 /* bubble-flat-outgoing-old@2x.png in Resources */,
 				C8A458811A2189F900786911 /* 导航－40-2-灰.png in Resources */,
 				C8A458BD1A2189F900786911 /* 灰色背景 3.png in Resources */,
@@ -2128,7 +2095,6 @@
 				C8A458F01A2189F900786911 /* FialViewController.xib in Resources */,
 				C8A4581C1A2189F900786911 /* bubble-flat-incoming@2x.png in Resources */,
 				C8A4581D1A2189F900786911 /* bubble-flat-outgoing-old.png in Resources */,
-				C8A4590B1A2189F900786911 /* NoMoneyViewController.xib in Resources */,
 				C8A458121A2189F900786911 /* bubble-default-incoming@2x.png in Resources */,
 				C8A458241A2189F900786911 /* bubble-square-incoming-selected@2x.png in Resources */,
 				C8A4589C1A2189F900786911 /* 我的订单_18.png in Resources */,
@@ -2255,7 +2221,6 @@
 				C8A4583E1A2189F900786911 /* UIView+AnimationOptionsForCurve.m in Sources */,
 				C8A458EF1A2189F900786911 /* FialViewController.m in Sources */,
 				C8A458471A2189F900786911 /* MyControl.m in Sources */,
-				C8A458FA1A2189F900786911 /* GetBankCardViewController.m in Sources */,
 				C8A456211A2189BD00786911 /* AppDelegate.m in Sources */,
 				C8A459111A2189F900786911 /* ScanCodeViewController.m in Sources */,
 				C8A457FC1A2189F900786911 /* AFXMLRequestOperation.m in Sources */,
@@ -2271,7 +2236,6 @@
 				C8A457FF1A2189F900786911 /* CustomViewController.mm in Sources */,
 				C8A457F71A2189F900786911 /* AFJSONRequestOperation.m in Sources */,
 				C8A459061A2189F900786911 /* LogInViewController.m in Sources */,
-				C8A4590A1A2189F900786911 /* NoMoneyViewController.m in Sources */,
 				C8A458001A2189F900786911 /* GuGuLandscapeTableView.m in Sources */,
 				C8A459021A2189F900786911 /* HistoryViewController.m in Sources */,
 				C8AE17C21A24356F0075C9FB /* NoBillViewController.m in Sources */,

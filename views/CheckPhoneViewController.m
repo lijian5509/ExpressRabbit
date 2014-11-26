@@ -26,6 +26,7 @@
     if (self) {
         _timer = [[NSTimer alloc]initWithFireDate:[NSDate distantFuture] interval:1 target:self selector:@selector(upDateTimer) userInfo:nil repeats:YES];
         _seconds = 60;
+         [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSDefaultRunLoopMode];
     }
     return self;
 }
@@ -91,25 +92,26 @@ SHOUJIANPAN;
 
 - (IBAction)btnClicked:(UIButton *)sender {
     GET_PLISTdICT
-    
     AFHTTPClient *alient=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@""]];
     NSString *postUrl=[NSString stringWithFormat:CESHIZONG,YINGHANGSMS];//验证码接口
     NSString *urlStr=[NSString stringWithFormat:CESHIZONG,TIANJIAYINHANGKA];
-    switch (sender.tag) {
-        case 101://获取验证码
+   if (sender.tag==101) //获取验证码
         {
+            
             if ([Helper validateMobile:self.textField1.text]) {
                 [alient postPath:postUrl parameters:@{@"mobile": self.textField1.text} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
                     [self showAlertViewWithMaessage:@"验证码已发送，请注意查收" title:@"提示" otherBtn:nil];
+                    [_timer setFireDate:[NSDate distantPast]];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     [self showAlertViewWithMaessage:@"网络异常" title:@"提示" otherBtn:nil];
                 }];
-                 [_timer setFireDate:[NSDate distantPast]];
+                
+                return;
             }
         }
-            
-            break;
-        case 102://确定
+    
+       if (sender.tag==102)//确定
         {
             //先判断数据是否有问题
             // courierId 快递员Id,@param cardName持有者姓名,@param bankCard  卡号,@param bankName  银行名称,@param checkMobile  验证电话,@param random 验证码
@@ -117,6 +119,7 @@ SHOUJIANPAN;
                 if (self.textField2.text.length==0) {
                     [self showAlertViewWithMaessage:@"请输入验证码" title:@"提示" otherBtn:nil];
                     [self.textField2 becomeFirstResponder];
+                     return ;
                 }else{
                     [alient postPath:urlStr parameters:@{@"courierId": dictPlist[@"id"],@"cardName":self.dataArray[0],@"bankCard":self.dataArray[1],@"bankName":self.dataArray[2],@"checkMobile":self.textField1.text,@"random":self.textField2.text} success:^(AFHTTPRequestOperation *operation, id responseObject) {
                         NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
@@ -130,20 +133,19 @@ SHOUJIANPAN;
                             [self.navigationController pushViewController:take animated:YES];
                         }else{
                             [self showAlertViewWithMaessage:@"提交失败,请认真核对后再提交" title:@"警告" otherBtn:nil];
+                             return ;
                         }
                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                         [self showAlertViewWithMaessage:@"网路异常" title:@"提示" otherBtn:nil];
+                        return ;
                     }];
 
                 }
             }else{
                 [self showAlertViewWithMaessage:@"请仔细核对手机号码" title:@"提示" otherBtn:nil];
                 [self.textField1 becomeFirstResponder];
+                 return ;
             }
-        }
-            break;
-        default:
-            break;
     }
     
     MessageCheckViewController *message=[[MessageCheckViewController alloc]init];
@@ -153,12 +155,12 @@ SHOUJIANPAN;
 }
 //显示警告框
 - (void) showAlertViewWithMaessage:(NSString *)message title:(NSString *)title otherBtn:(NSString *)btnT {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:btnT, nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
     [alert show];
 }
 //开启定时器
 -(void)upDateTimer{
-    UIButton *btn = (UIButton *)[self.view viewWithTag:103];
+    UIButton *btn = (UIButton *)[self.view viewWithTag:101];
     btn.enabled = NO;
     _seconds--;
     btn.titleLabel.text=[NSString stringWithFormat:@"%ld秒",_seconds];

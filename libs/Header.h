@@ -31,7 +31,7 @@
 #import "HeadView.h"
 #import "GeRenTableViewCell.h"
 #import "SheZhiViewController.h"
-#import "NoMoneyViewController.h"
+
 #import "ChatViewController.h"
 #import "FialViewController.h"
 #import "GeRenTableViewCell.h"
@@ -39,6 +39,14 @@
 #import "LJFScollerViewController.h"
 #import "DidDealTableViewController.h"
 #import "KuaiDiViewController.h"
+
+
+
+
+
+
+
+
 
 //获取屏幕高度
 #define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height

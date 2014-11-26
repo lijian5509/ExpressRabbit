@@ -17,7 +17,7 @@
 
 @interface BalanceViewController ()
 {
-    UITableView *_tableview;
+    
     UIButton *_takeBtn;
     UILabel *_footLabel;
     UIImageView *_bottomView;
@@ -25,7 +25,7 @@
     BOOL _isRefreshing;
     NSInteger _currenPage;
     AFHTTPClient *_client;
-
+    NSInteger _moneyNum;
     
 }
 @end
@@ -45,6 +45,9 @@
 
 #pragma mark - 页面将要显示时，
 -(void)viewWillAppear:(BOOL)animated{
+    TabBarViewController *tab=[TabBarViewController shareTabBar];
+    tab.tabBar.hidden=YES;
+
     [self showUI];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"订单详情_11"] forBarMetrics:UIBarMetricsLandscapePhone];
     BACKKEYITEM;
@@ -58,15 +61,21 @@
     
         BOOL n=[(NSNumber *)dict[@"success"] boolValue];
         if (n) {
-            _footLabel.text=[(NSNumber *)dict[@"result"] stringValue];
+            _footLabel.text=[NSString stringWithFormat:@"可提现金额为%.f元" ,[(NSNumber *)dict[@"result"] floatValue] ];
+            _moneyNum=[dict[@"result"] integerValue];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showAlertViewWithMaessage:@"网络异常" title:@"提示" otherBtn:nil];
     }];
     
 }
+
+
+//导航栏返回键
 -(void)getBack{
-    [self.navigationController popViewControllerAnimated:YES];
+    TabBarViewController *tab=[TabBarViewController shareTabBar];
+    tab.tabBar.hidden=NO;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad
@@ -88,7 +97,8 @@
     [self.view addSubview:_tableview];
     _bottomView=[[UIImageView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-44, 320, 44)];
     _bottomView.backgroundColor=[UIColor darkGrayColor];
-    _footLabel=[MyControl creatLabelWithFrame:CGRectMake(0, 0, 260, 44) text:@"可提现金额为xxx元"];
+    _bottomView.userInteractionEnabled=YES;
+    _footLabel=[MyControl creatLabelWithFrame:CGRectMake(0, 0, 260, 44) text:@"  可提现金额为xxx元"];
     _footLabel.textAlignment=NSTextAlignmentLeft;
     _footLabel.textColor=[UIColor whiteColor];
     _footLabel.font=[UIFont systemFontOfSize:22];
@@ -101,7 +111,8 @@
 -(void)creatRefresh{
     NSString *postUrl=[NSString stringWithFormat:CESHIZONG,ZHANGDANCHAXUN];
     GET_PLISTdICT
-    [_tableview addHeaderWithCallback:^{
+    __block BalanceViewController *bSelf=self;
+    [bSelf.tableview addHeaderWithCallback:^{
         if (_isRefreshing) {
             return ;
         }
@@ -120,7 +131,7 @@
         }];
     }];
     
-    [_tableview addHeaderWithCallback:^{
+    [bSelf.tableview addHeaderWithCallback:^{
         if (_isRefreshing) {
             return ;
         }
@@ -139,10 +150,15 @@
         }];
         
     }];
-
 }
 
 -(void)btnClicked:(UIButton *)btn{
+    //首先看余额是否为零
+    if (_moneyNum==0) {
+        [self showAlertViewWithMaessage:@"余额为0,暂不能提现" title:@"提示" otherBtn:nil];
+        return;
+    }
+    
     //查看银行卡是否绑定
     NSString *urlPatn=[NSString stringWithFormat:CESHIZONG,GETYINHANGKAXINXI];//得到银行卡信息
     GET_PLISTdICT
@@ -220,7 +236,7 @@
 
 //显示警告框
 - (void) showAlertViewWithMaessage:(NSString *)message title:(NSString *)title otherBtn:(NSString *)btnT {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:btnT, nil];
+      UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
     [alert show];
 }
 

@@ -9,6 +9,7 @@
 #import "GeRenViewController.h"
 #import "HeadView.h"
 #import "BalanceViewController.h"
+#import "NoBillViewController.h"
 //#import "GeRenTableViewCell.h"
 //#import "SheZhiViewController.h"
 //#import "ShareViewController.h"
@@ -190,7 +191,8 @@
                     BalanceViewController *balance=[[BalanceViewController alloc]init];
                     [self.navigationController pushViewController:balance animated:YES];
                 }else{
-                    NoMoneyViewController *no=[[NoMoneyViewController alloc]init];
+                    NoBillViewController *no=[[NoBillViewController alloc]init];
+                    self.hidesBottomBarWhenPushed=YES;
                     [self.navigationController pushViewController:no animated:YES];
                     
                 }
@@ -228,7 +230,7 @@
 
 //显示警告框
 - (void) showAlertViewWithMaessage:(NSString *)message title:(NSString *)title otherBtn:(NSString *)btnT {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:btnT, nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
     [alert show];
 }
 #pragma mark - 警告框及实现警告协议

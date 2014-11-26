@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LinkBankViewController : UIViewController
+@interface LinkBankViewController : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *bankCardTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cardNameTextField;

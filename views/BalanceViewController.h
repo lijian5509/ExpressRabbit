@@ -22,6 +22,6 @@
 -(void)downloadSuccessWith:(id)responseObject;
 //结束刷新
 -(void)endRefreshing;
-
+@property (nonatomic,retain)UITableView *tableview;
 
 @end
