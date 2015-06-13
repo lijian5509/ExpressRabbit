@@ -7,19 +7,82 @@
 //
 
 #import "Helper.h"
+#import "SecurityUtil.h"
 
 @implementation Helper
 
++ (NSString *) addSecurityWithUrlStr:(NSString *)url{
+    NSString *str=[NSString stringWithFormat:CESHIZONG,url];
+    NSString *string=[NSString stringWithFormat:@"%@%@",str,PRIVATEKEY];
+    return [SecurityUtil encryptMD5String:string];
+}
+
++ (NSString *) phoneFromAddressTelphone:(NSString *)str{
+    char c=[str characterAtIndex:0];
+    if (c=='+') {
+        str =[str substringFromIndex:4];
+    }
+    
+    NSString *strGeShi = @"";
+    for (int i =0; i<str.length; i++) {
+        unichar c = [str characterAtIndex:i];
+        if (c=='-') {
+            
+        }else{
+            strGeShi = [strGeShi stringByAppendingFormat:@"%c",c];
+        }
+    }
+    return strGeShi;
+}
+
++ (NSString *) phoneFromSendTelphone:(NSString *)str{
+    if ([str isEqualToString:@"[]"]) {
+        return @"";
+    }else{
+        NSString *sendStr = [str substringWithRange:NSMakeRange(1, str.length-2)];
+        NSArray *arr = [sendStr componentsSeparatedByString:@","];
+        if (arr==nil) {
+            return sendStr;
+        }else{
+            NSString *onlypaceStr = [arr componentsJoinedByString:@" "];
+            NSArray *enterArr = [onlypaceStr componentsSeparatedByString:@"\n"];
+            NSString *str = @"";
+            if (enterArr.count ==1) {
+                return sendStr;
+            }
+            for (NSString *s in [onlypaceStr componentsSeparatedByString:@"\n"]) {
+                if ([s isEqualToString: @""]) {
+                    
+                }else{
+                    str = [str stringByAppendingString:[s substringFromIndex:4]];
+                }
+            }
+            NSString *strGeShi = [[str componentsSeparatedByString:@" "] componentsJoinedByString:@","];
+            return strGeShi;
+        }
+    }
+}
+
+
 + (NSString *) dateStringFromNumberString:(NSString *)str{
-    NSDate *date=[NSDate dateWithTimeIntervalSince1970:[str doubleValue]];
+    NSDate *date=[NSDate dateWithTimeIntervalSince1970:[str doubleValue]/1000];
     NSDateFormatter *fm=[[NSDateFormatter alloc]init];
-    fm.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+//    fm.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    fm.dateFormat=@"MM-dd HH:mm";
+    return [fm stringFromDate:date];
+}
+
++ (NSString *) fullDateStringFromNumberString:(NSString *)str{
+    NSDate *date=[NSDate dateWithTimeIntervalSince1970:[str doubleValue]/1000];
+    NSDateFormatter *fm=[[NSDateFormatter alloc]init];
+    //    fm.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    fm.dateFormat=@"yyyy-MM-dd HH:mm";
     return [fm stringFromDate:date];
 }
 
 +(NSString *)dateStringFromNumberDate:(NSDate *)date{
     NSDateFormatter *fm=[[NSDateFormatter alloc]init];
-    fm.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    fm.dateFormat=@"yyyy-MM-dd HH:mm";
     return [fm stringFromDate:date];
 }
 
@@ -62,21 +125,18 @@
 + (BOOL) validateMobile:(NSString *)mobile
 {
     //手机号以13， 15，18开头，八个 \d 数字字符
-    NSString *phoneRegex = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";
+    NSString *phoneRegex = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9]))\\d{8}$";
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
     return [phoneTest evaluateWithObject:mobile];
 }
-
 
 //车牌号验证
 + (BOOL) validateCarNo:(NSString *)carNo
 {
     NSString *carRegex = @"^[\u4e00-\u9fa5]{1}[a-zA-Z]{1}[a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fa5]$";
     NSPredicate *carTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",carRegex];
-    NSLog(@"carTest is %@",carTest);
     return [carTest evaluateWithObject:carNo];
 }
-
 
 //车型
 + (BOOL) validateCarType:(NSString *)CarType
@@ -136,13 +196,23 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     
     return [emailTest evaluateWithObject:email];
-    
 }
+
 + (BOOL) bankCard:(NSString *)cardID{
     NSString *regex = @"[0-9]{16,19}";
     NSPredicate *passwordText = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [passwordText evaluateWithObject:cardID];
 }
 
++ (NSMutableDictionary *)getMessageListAndSelectIndex{
+    NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/messageInfo.plist"];
+    NSMutableDictionary *messageDict=[NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    return messageDict;
+}
+
++ (NSString *)getMessagePath{
+    NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/messageInfo.plist"];
+    return filePath;
+}
 
 @end

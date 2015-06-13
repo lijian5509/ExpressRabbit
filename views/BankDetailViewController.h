@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BankDetailViewController : UIViewController<UITextFieldDelegate>
+@interface BankDetailViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *textField1;
-@property (weak, nonatomic) IBOutlet UITextField *textField2;
-@property (weak, nonatomic) IBOutlet UITextField *textField3;
-@property (weak, nonatomic) IBOutlet UITextField *textField4;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *bankCardNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bankNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumberLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *lineView1;
+@property (weak, nonatomic) IBOutlet UIImageView *lineView2;
+
+@property (weak, nonatomic) IBOutlet UIImageView *lineView3;
 @end

@@ -19,4 +19,8 @@
 //创建刷新
 - (void)refreshTableview;
 
+@property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic)NSInteger currentPage;
+
+
 @end

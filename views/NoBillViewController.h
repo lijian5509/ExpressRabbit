@@ -13,5 +13,9 @@
 - (IBAction)btnClicked:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *cashLabel;
+@property (nonatomic,copy)NSString *realName;
+
+@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
+@property (weak, nonatomic) IBOutlet UIButton *bottomBtn;
 
 @end

@@ -558,7 +558,7 @@ didReceiveResponse:(NSURLResponse *)response
     }
     
     if (self.downloadProgress) {
-        self.downloadProgress((long long)[data length], self.totalBytesRead, self.response.expectedContentLength);
+        self.downloadProgress((long)[data length], self.totalBytesRead, self.response.expectedContentLength);
     }
 }
 

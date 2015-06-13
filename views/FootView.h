@@ -9,14 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @interface FootView : UIView
-@property (weak, nonatomic) IBOutlet UIButton *addPerson;
-@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
-@property (weak, nonatomic) IBOutlet UIButton *oneBtn;
-@property (weak, nonatomic) IBOutlet UIButton *twoBtn;
-@property (weak, nonatomic) IBOutlet UIButton *threebtn;
-@property (weak, nonatomic) IBOutlet UILabel *oneLabel;
-@property (weak, nonatomic) IBOutlet UILabel *twoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *threeLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *littleImageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *littleImageView2;
+
+@property (weak, nonatomic) IBOutlet UIImageView *littleImageView3;
+
+@property (weak, nonatomic) IBOutlet UIButton *btn1;
+@property (weak, nonatomic) IBOutlet UIButton *btn2;
+@property (weak, nonatomic) IBOutlet UIButton *btn3;
+@property (weak, nonatomic) IBOutlet UIImageView *label2;
+@property (weak, nonatomic) IBOutlet UIImageView *label1;
+
+@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
+@property (weak, nonatomic) IBOutlet UIButton *addPersonBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+
 @end

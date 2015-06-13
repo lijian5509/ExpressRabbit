@@ -10,61 +10,53 @@
 
 @implementation DuanXinViewCell
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib{
     self.textField.delegate=self;
-    self.textField.keyboardType=UIKeyboardTypeTwitter;
-    //设置二级键盘
-    _inputView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-    _inputView.tag=1001;
-    _inputView.backgroundColor=[UIColor whiteColor];
-    UIButton *figureBtn=[MyControl creatButtonWithFrame:CGRectMake(20, 5, 60, 30) target:self sel:@selector(textBtnClicked:) tag:201 image:nil title:@"数字"];
-    figureBtn.backgroundColor=[UIColor blueColor];
-    figureBtn.titleLabel.textColor=[UIColor whiteColor];
-    UIButton *letterBtn=[MyControl creatButtonWithFrame:CGRectMake(80, 5, 60, 30) target:self sel:@selector(textBtnClicked:) tag:202 image:nil title:@"字母"];
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef borderColorRef = CGColorCreate(colorSpace,(CGFloat[]){ 0, 0, 1, 1 });
-    letterBtn.layer.borderWidth=1;
-    letterBtn.layer.borderColor=borderColorRef;
-    figureBtn.layer.borderColor=borderColorRef;
-    figureBtn.layer.borderWidth=1;
-    letterBtn.titleLabel.font=[UIFont boldSystemFontOfSize:16];
-    figureBtn.titleLabel.font=[UIFont boldSystemFontOfSize:16];
-    UIButton *doneBtn=[MyControl creatButtonWithFrame:CGRectMake(260, 5, 60, 30) target:self sel:@selector(done) tag:203 image:nil title:@"完成"];
-    doneBtn.titleLabel.font=[UIFont boldSystemFontOfSize:15];
-    [_inputView addSubview:letterBtn];
-    [_inputView addSubview:figureBtn];
-    [_inputView addSubview:doneBtn];
-    self.textField.keyboardType=UIKeyboardTypeNumberPad;
-    self.textField.inputAccessoryView=_inputView;
+    self.textField.layer.masksToBounds = YES;
+    self.textField.layer.cornerRadius = 4;
+    self.textField.inputAccessoryView = [self getInputAccessView];
+    self.backgroundColor = MyColor(233, 233, 233);
+    UIView *whiteBackView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, SCREENWIDTH-20, 39)];
+    whiteBackView.layer.masksToBounds = YES;
+    whiteBackView.layer.cornerRadius = 4;
+    whiteBackView.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:whiteBackView];
+    [whiteBackView addSubview:self.deleteBtn];
+    [whiteBackView addSubview:self.deleteBtn1];
+    [whiteBackView addSubview:self.textField];
 }
+
+-(UIView *)getInputAccessView{
+    UIView *blackLineFromTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENHEIGHT, 1)];
+    blackLineFromTop.backgroundColor = MyColor(200, 200, 200);
+    UIButton *view=[MyControl creatButtonWithFrame:CGRectMake(0, 0, 320, 40) target:self sel:@selector(done) tag:100002 image:nil title:nil];
+    view.backgroundColor=[UIColor whiteColor];
+    UIButton *btn=[MyControl creatButtonWithFrame:CGRectMake(280, 12.5, 30, 15) target:self sel:@selector(done) tag:10001 image:nil title:@"完成"];
+    UIView *blackLineFromBottom = [[UIView alloc] initWithFrame:CGRectMake(0, view.frame.size.height-1, SCREENWIDTH, 1)];
+    blackLineFromBottom.backgroundColor = MyColor(200, 200, 200);
+    [view addSubview:blackLineFromTop];
+    [view addSubview:blackLineFromBottom];
+    [view addSubview:btn];
+    return view;
+}
+
 -(void)done{
     [self.textField resignFirstResponder];
 }
 
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 //收键盘
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.textField resignFirstResponder];
 }
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
 
 #pragma mark - 限定输入内容
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    
-    
-}
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-   
     if (textField.text.length+string.length>11) {
         return NO;
     }
@@ -72,42 +64,9 @@
         self.phoneText=[NSString stringWithFormat:@"%@%@",textField.text,string];
         if ([self.textDelegate respondsToSelector:@selector(addTextField:)]) {
             [self.textDelegate performSelector:@selector(addTextField:) withObject:self];
-            
         }
     }
         return YES;
-}
--(void)textBtnClicked:(UIButton *)btn{
-    
-    switch (btn.tag) {
-        case 201:
-        {
-            
-            [btn setBackgroundColor:[UIColor blueColor]];
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            UIButton *button=(UIButton *)[_inputView viewWithTag:202];
-            [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-            button.backgroundColor=[UIColor whiteColor];
-            [self.textField resignFirstResponder];
-            self.textField.keyboardType=UIKeyboardTypeNumberPad;
-            [self.textField becomeFirstResponder];
-        }
-            break;
-        case 202:
-        {
-            [btn setBackgroundColor:[UIColor blueColor]];
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            UIButton *button=(UIButton *)[_inputView viewWithTag:201];
-            [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-            button.backgroundColor=[UIColor whiteColor];
-            [self.textField resignFirstResponder];
-            self.textField.keyboardType=UIKeyboardTypeDefault;
-            [self.textField becomeFirstResponder];
-        }
-            break;
-        default:
-            break;
-    }
 }
 
 - (IBAction)btnClicked:(UIButton *)sender {
@@ -119,8 +78,6 @@
     if ([self.textDelegate respondsToSelector:@selector(removeTextViewWith:)]) {
         [self.textDelegate performSelector:@selector(removeTextViewWith:) withObject:self];
     }
-
-   
 }
 @end
     

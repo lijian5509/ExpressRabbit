@@ -7,27 +7,13 @@
 //
 
 #import "TabBarViewController.h"
-//#import "LJFScollerViewController.h"
-//#import "DidDealTableViewController.h"
-//#import "KuaiDiViewController.h"
-
-@interface TabBarViewController ()
-
-@end
+#import "Music.h"
+#import "UserLocationManager.h"
+#import "LJFScollerViewController.h"
 
 @implementation TabBarViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-
-#pragma mark - 创建一个非标准的单例 
+#pragma mark - 创建一个非标准的单例
 +(TabBarViewController *)shareTabBar{
     static TabBarViewController *Tab = nil;
     @synchronized(self){
@@ -39,22 +25,82 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"主控"];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"主控"];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tabBar.barTintColor=[UIColor whiteColor];
     self.tabBar.translucent=NO;
     [self creatSystemBar];
+    [[UserLocationManager shareManager]startLocation];
+    [self checkNewOrderNum];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkNewOrderNum) name:@"trans" object:nil];
+}
+#pragma mark - 检测当前有多少新的推送订单
+- (void)checkNewOrderNum{
+    GET_PLISTdICT
+    AFHTTPClient *_client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@" "]];
+    if (![dictPlist[@"id"] isEqualToString:@"0"]) {
+        NSString *urlPath=[NSString stringWithFormat:CESHIZONG,DINGDANWEIDU];
+        NSString *sign=[Helper addSecurityWithUrlStr:DINGDANWEIDU];
+        [_client postPath:urlPath parameters:@{@"courierId": dictPlist[@"id"],@"publicKey":PUBLICKEY,@"sign":sign} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+            BOOL isSuccess=[(NSNumber *)dict[@"success"] boolValue];
+            if(isSuccess){
+                if ([dict[@"result"] integerValue]!=0) {
+                    self.tabBarController.selectedIndex=1;
+                    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"refresh"];
+                    [[self.tabBar.items objectAtIndex:1] setBadgeValue:[dict[@"result"] stringValue] ];
+                }
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+        }];
+        NSString *dataPath=[NSString stringWithFormat:CESHIZONG,XINLIUSHUISHUMU];
+        NSString *key=[NSString stringWithFormat:@"%@Time",dictPlist[@"id"]];
+        NSString *str=[[NSUserDefaults standardUserDefaults]stringForKey:key];
+        if (str==nil) {
+            str=@"0";
+        }
+        NSString *sign1=[Helper addSecurityWithUrlStr:XINLIUSHUISHUMU];
+        [_client postPath:dataPath parameters:@{@"courierId": dictPlist[@"id"],@"motifyTime":str,@"publicKey":PUBLICKEY,@"sign":sign1}   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+            BOOL isSuccess=[(NSNumber *)dict[@"success"] boolValue];
+            if(isSuccess){
+                if ([dict[@"result"][@"ProcessCount"] integerValue]!=0) {
+                    [[self.tabBar.items objectAtIndex:3] setBadgeValue:[dict[@"result"][@"ProcessCount"] stringValue] ];
+                }else{
+                    [[self.tabBar.items objectAtIndex:3] setBadgeValue:nil];
+                }
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+        }];
+        
+    }
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 
 #pragma mark 调用系统的tabBar
 -(void)creatSystemBar{
-    NSArray *images = @[@"tabBar1",@"tabBar2",@"tabBar3",@"tabBar4"];
-    NSArray *selectImages= @[@"tabBar-1",@"tabBar-2",@"tabBar-3",@"tabBar-4"];
+    NSArray *selectImages = @[@"tabBar1",@"tabBar2",@"tabBar3",@"tabBar4"];
+    NSArray *images= @[@"tabBar-1",@"tabBar-2",@"tabBar-3",@"tabBar-4"];
     NSMutableArray *array=[[NSMutableArray alloc]init];
     NSArray *views=@[@"ShouYeViewController",@"LJFScollerViewController",@"DuanXinViewController",@"GeRenViewController"];
-    NSArray *titles=@[@"首页",@"快递订单",@"短信通知",@"我"];
+    NSArray *titles=@[@"首页",@"订单",@"短信",@"我"];
     for (int i=0; i<4; i++) {
         Class cls=NSClassFromString(views[i]);
         if (i==2||i==3) {
@@ -63,101 +109,32 @@
             navC.tabBarItem.image=[[UIImage imageNamed:images[i]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             navC.tabBarItem.selectedImage=[[UIImage imageNamed:selectImages[i]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             navC.title=titles[i];
-            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor orangeColor]} forState:UIControlStateNormal];
-            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor grayColor]} forState:UIControlStateSelected];
+            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor grayColor]} forState:UIControlStateNormal];
+            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor orangeColor]} forState:UIControlStateSelected];
             [array addObject:navC];
         }else if (i==1) {
             KuaiDiViewController *kuaiDi=[[KuaiDiViewController alloc]init];
             DidDealTableViewController *didDeal=[[DidDealTableViewController alloc]init];
-            
             LJFScollerViewController *ljf=[[LJFScollerViewController alloc]initWithViewControllers:@[kuaiDi,didDeal] withTitle:@[@"待处理",@"已处理"]];
             UINavigationController *navC=[[UINavigationController alloc]initWithRootViewController:ljf];
             navC.tabBarItem.image=[[UIImage imageNamed:images[i]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             navC.tabBarItem.selectedImage=[[UIImage imageNamed:selectImages[i]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             navC.title=titles[i];
-            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor orangeColor]} forState:UIControlStateNormal];
-            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor grayColor]} forState:UIControlStateSelected];
+            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor grayColor]} forState:UIControlStateNormal];
+            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor orangeColor]} forState:UIControlStateSelected];
             [array addObject:navC];
         }else{
             UIViewController *control=[[cls alloc]init];
             UINavigationController *navC=[[UINavigationController alloc]initWithRootViewController:control];
             navC.tabBarItem.image=[[UIImage imageNamed:images[i]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             navC.tabBarItem.selectedImage=[[UIImage imageNamed:selectImages[i]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-             [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor orangeColor]} forState:UIControlStateNormal];
-            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor grayColor]} forState:UIControlStateSelected];
+            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor grayColor]} forState:UIControlStateNormal];
+            [navC.tabBarItem setTitleTextAttributes:@{UITextAttributeTextColor: [UIColor orangeColor]} forState:UIControlStateSelected];
             navC.title=titles[i];
             [array addObject:navC];
         }
     }
     self.viewControllers=array;
 }
-
-/*
-#pragma mark - 增加子视图控制器
--(void)creatTabItems{
-    NSArray *images = @[@"导航－橙色_12",@"导航－橙色_14",@"导航－橙色_16",@"导航－橙色_18"];
-    NSArray *selectImages= @[@"导航－灰_12",@"导航－灰_14",@"导航－灰_16",@"导航－灰_18"];
-    NSMutableArray *array=[[NSMutableArray alloc]init];
-    NSArray *views=@[@"ShouYeViewController",@"KuaiDiViewController",@"DuanXinViewController",@"GeRenViewController"];
-    for (int i=0; i<4; i++) {
-        Class cls=NSClassFromString(views[i]);
-        if (i!=0) {
-            UITableViewController *control=[[cls alloc]init];
-            UINavigationController *navC=[[UINavigationController alloc]initWithRootViewController:control];
-            [array addObject:navC];
-        }else{
-            UIViewController *control=[[cls alloc]init];
-            UINavigationController *navC=[[UINavigationController alloc]initWithRootViewController:control];
-            [array addObject:navC];
-        }
-        UIButton *btn=[MyControl creatButtonWithFrame:CGRectMake(80*i, 0, 80, 49) target:self sel:@selector(btnClick:) tag:101+i image:images[i] title:nil];
-        [btn setBackgroundImage:[UIImage imageNamed:selectImages[i]] forState:UIControlStateSelected];
-        [self.TabImageView addSubview:btn];
-        if (i==0) {
-            btn.selected=YES;
-        }
-        self.viewControllers=array;
-    }
-    
-}
-
-#pragma mark - btn被点击
-- (void)btnClick:(UIButton *)btn{
-    //设置为选中状态
-    btn.selected = YES;
-    //修改tabBarController的selectedIndex  这样我们就可以通过selectedIndex来管理视图切换
-    //设置选中的视图控制器的索引
-    self.selectedIndex = btn.tag - 101;
-    //遍历tabBar所有子视图  把其他的button selected 改为NO
-    for (UIView *view in self.TabImageView.subviews) {
-        if ([view isKindOfClass:[UIButton class]]) {
-            if (view.tag!= btn.tag) {
-                //判断是否是其他的button
-                ((UIButton *)view).selected = NO;
-                //设置未选中
-            }
-        }
-    }
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
- */
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

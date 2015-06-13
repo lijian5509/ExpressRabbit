@@ -20,6 +20,7 @@
     if (self) {
         // Custom initialization
     }
+    self.model=[[BalanceModel alloc]init];
     return self;
 }
 
@@ -27,7 +28,8 @@
 {
     [super viewDidLoad];
     [self showUI];
-    
+    [self giveData];
+
 }
 
 #pragma mark - 显示界面
@@ -35,6 +37,8 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"订单详情_11"] forBarMetrics:UIBarMetricsLandscapePhone];
     self.title=@"交易详情";
     BACKKEYITEM
+    
+    self.moneyLabel.textColor=[UIColor colorWithRed:0 green:153/255.f blue:0 alpha:1];
 }
 //返回键
 -(void)getBack{
@@ -43,7 +47,11 @@
 
 #pragma mark -赋值
 
--(void)setModel:(BalanceModel *)model{
+-(void)giveData{
+    BalanceModel *model=[[BalanceModel alloc]init];
+    model=self.model;
+    
+    NSLog(@"%@",self.model);
     self.serailLabel.text=model.serialNumber;
     if ([model.processStatus intValue]==0) {
         self.statusLabel.text=@"处理中";
@@ -60,12 +68,12 @@
     }else{
         self.typeLabel.text=@"转入";
         self.moneyLabel.text=[NSString stringWithFormat:@"+%.2f",[model.dealMoney floatValue]];
-        self.moneyLabel.textColor=[UIColor cyanColor];
+        self.moneyLabel.textColor=[UIColor colorWithRed:0 green:153/255.f blue:0 alpha:1];
     }
     self.balanceLabel.text=[NSString stringWithFormat:@"%.2f",[model.balance floatValue]];
     self.timeLabel.text=[Helper dateStringFromNumberString:[model.createTime stringValue]];
-    if (model.baseOrderNo) {
-        self.orderLabel.text=[model.baseOrderNo stringValue];
+    if ((id)model.baseOrderNo ==[NSNull null]) {
+        self.orderLabel.text = [model.baseOrderNo stringValue];
     }else{
         self.orderLabel.text=@"无";
     }

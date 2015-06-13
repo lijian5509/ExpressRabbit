@@ -7,33 +7,43 @@
 //
 
 #import "HistoryViewController.h"
-#import "HistoryViewCell.h"
-
+#import "HisCell.h"
+#import "HistoryModel.h"
 #import "MJRefresh.h"
 
-@interface HistoryViewController ()
-@end
-
 @implementation HistoryViewController
-
+{
+   AMTumblrHud *tumblrHUD;
+}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        // Custom initialization
+        self.dataArray =[[NSMutableArray alloc]init];
+        self.currentPage=1;
     }
     return self;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"历史记录"];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"历史记录"];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     TABLEVIEWBACKVIEW;
     BACKKEYITEM;
     self.title=@"历史信息";
-    
+    [self refreshTableview];
+    [self.tableView headerBeginRefreshing];
 }
 -(void)getBack{
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -43,35 +53,47 @@
 -(void)refreshTableview{
     AFHTTPClient *client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@""]];
     GET_PLISTdICT
+    SHOWACTIVITY
     NSString *urlPath=[NSString stringWithFormat:CESHIZONG,DUANXINJILU];
     __block HistoryViewController *bSelf=self;
+    NSString *sign=[Helper addSecurityWithUrlStr:DUANXINJILU];
     [bSelf.tableView addHeaderWithCallback:^{
         if (_isRefreshinging) {
             return ;
         }
         _isRefreshinging=YES;
-        _currentPage=0;
-        [client postPath:urlPath parameters:@{@"courierId": dictPlist[@"id"],@"page":@"0",@"pageNum":@"10"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        _currentPage=1;
+        [client postPath:urlPath parameters:@{@"courierId": dictPlist[@"id"],@"page":@"1",@"pageNum":@"10",@"publicKey":PUBLICKEY,@"sign":sign} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
             [self downloadSuccessWithData:responseObject];
             
-        } failure:nil];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self endRefreshing];
+        }];
     }];
     [bSelf.tableView addFooterWithCallback:^{
-
+        
         if (_isRefreshinging) {
             return ;
         }
-       
         _isRefreshinging=YES;
         _currentPage++;
-       [client postPath:urlPath parameters:@{@"courierId": dictPlist[@"id"],@"page":[NSString stringWithFormat:@"%ld",_currentPage],@"pageNum":@"10"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-           [self downloadSuccessWithData:responseObject];
-       } failure:nil];
-        
+        if (self.dataArray.count == 0) {
+            [self endRefreshing];
+            return;
+        }
+        HistoryModel *model=[self.dataArray lastObject];
+        [client postPath:urlPath parameters:@{@"courierId": dictPlist[@"id"],@"page":@"1",@"pageNum":@"10",@"problemId":[model.id stringValue],@"publicKey":PUBLICKEY,@"sign":sign} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self downloadSuccessWithData:responseObject];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self endRefreshing];
+        }];
     }];
     
 }
 -(void)endRefreshing{
+    
+    [tumblrHUD removeFromSuperview];
     [self.tableView headerEndRefreshing];
     [self.tableView footerEndRefreshing];
     
@@ -79,97 +101,103 @@
 #pragma mark - 解析数据
 -(void)downloadSuccessWithData:(id)response{
     [self endRefreshing];
-    if (response) {
-        NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        
+    _isRefreshinging=NO;
+    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    BOOL isSuccess=[(NSNumber *)dict[@"success"] boolValue];
+    if (!isSuccess) {
+        return;
     }
+    if (self.currentPage==1) {
+        [self.dataArray removeAllObjects];
+    }
+    NSArray *arr=dict[@"result"];
+    for (NSDictionary *dic in arr) {
+        HistoryModel *model=[[HistoryModel alloc]init];
+        [model setValuesForKeysWithDictionary:dic];
+        [self.dataArray addObject:model];
+    }
+    if (self.dataArray.count==0) {
+        [self showAlert:@"您暂时还没没有短信记录" isSure:YES];
+        return;
+    }
+    [self.tableView reloadData];
+    
     
 }
 #pragma mark - Table view data source
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 1;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-//#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 10;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 1;
-}
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section==9) {
-        return nil;
-    }
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
-    view.backgroundColor=GRAYCOLOR;
-    return view;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 20;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 125;
+    return self.dataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellId=@"history";
-    HistoryViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell=[[[NSBundle mainBundle]loadNibNamed:@"HistoryViewCell" owner:self options:nil]lastObject];
+    static NSString *cellId = @"cell";
+    HisCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell==nil) {
+        cell = [[HisCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
+    HistoryModel *model = self.dataArray[indexPath.row];
+    [cell showData:model];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    HistoryModel *model = self.dataArray[indexPath.row];
+    CGFloat neiRongHeight = [Helper textHeightFromString:[NSString stringWithFormat:@"%@",model.smsContent] width:tableView.frame.size.width-30 fontsize:13];
+    CGFloat dianHuaHeight = [Helper textHeightFromString:[NSString stringWithFormat:@"发送至:%@",[Helper phoneFromSendTelphone:model.sendTelephone]] width:tableView.frame.size.width-30 fontsize:13];
+    NSLog(@"%@",model.sendTelephone);
+    if (neiRongHeight<20) {
+        neiRongHeight=20;
+    }
+    if (dianHuaHeight<20) {
+        dianHuaHeight=20;
+    }
+    CGFloat allHeight = 52+neiRongHeight+dianHuaHeight;
+    return allHeight;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    return;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+//显示警告框
+- (void) showAlertViewWithMaessage:(NSString *)message title:(NSString *)title otherBtn:(NSString *)btnT {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
+    [alert show];
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+#pragma mark - 提现成功后显示
+- (void)timerFireMethod:(NSTimer*)theTimer//弹出框
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UIAlertView *promptAlert = (UIAlertView*)[theTimer userInfo];
+    [promptAlert dismissWithClickedButtonIndex:0 animated:NO];
+    promptAlert =NULL;
 }
-*/
+
+- (void)showAlert:(NSString *) _message isSure:(BOOL)sure{//时间
+    UIAlertView *promptAlert = [[UIAlertView alloc] initWithTitle:@"提示:" message:_message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    
+    if (sure) {
+        [NSTimer scheduledTimerWithTimeInterval:1.5f
+                                         target:self
+                                       selector:@selector(timerFireMethod:)
+                                       userInfo:promptAlert
+                                        repeats:YES];
+        
+    }
+    [promptAlert show];
+}
+
 
 @end

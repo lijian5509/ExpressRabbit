@@ -13,11 +13,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UILabel *moneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *IdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankLabel;
-@property (weak, nonatomic) IBOutlet UILabel *yuanLabel;
-@property (nonatomic, copy) NSMutableArray *dataArray;
 
+@property (nonatomic,strong) NSMutableArray *dataArray;
 
 
 

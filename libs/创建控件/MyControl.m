@@ -22,7 +22,7 @@
     
     UIButton *button = nil;
     if (name) {//创建图片按钮
-        button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button = [UIButton buttonWithType:UIButtonTypeSystem];
         //设置背景图片
         [button setBackgroundImage:[UIImage imageNamed:name] forState:UIControlStateNormal];
         if (title) {
@@ -33,11 +33,11 @@
     }else if(title){//创建标题按钮
         button = [UIButton buttonWithType:UIButtonTypeSystem];
         [button setTitle:title forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }else{
          button = [UIButton buttonWithType:UIButtonTypeSystem];
     }
     button.titleLabel.font = [UIFont systemFontOfSize:14];
-    
     button.frame = frame;
     button.tag = tag;
     

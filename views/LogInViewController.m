@@ -7,80 +7,44 @@
 //
 
 #import "LogInViewController.h"
-//#import "GetBackPasswordViewController.h"
-//#import "RegisterViewController.h"
-//#import "AFHTTPClient.h"
-//#import "TabBarViewController.h"
-//#import "AppDelegate.h"
-
-
-@interface LogInViewController ()
-{
-    AFHTTPClient *aClient;
-}
-@end
+#import "APService.h"
 
 @implementation LogInViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        aClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@""]];
-    }
-   
-    return self;
-}
-#pragma mark - 将要显示界面的时候判断是否是退出登录
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
-    BACKKEYITEM;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"订单详情_11"] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
-    UIButton *btn1=(UIButton *)[self.view viewWithTag:101];
-    self.title=@"注册";
-    btn1.userInteractionEnabled=NO;
-    return;
-    [self showUI];
+    AMTumblrHud *tumblrHUD;
 }
 
 -(void)getBack{
-    
     TabBarViewController *tab=[TabBarViewController shareTabBar];
     UIApplication *app=[UIApplication sharedApplication];
     AppDelegate *app2=app.delegate;
+    app2.window.rootViewController=tab;
     [tab creatSystemBar];
     tab.selectedIndex=0;
-    app2.window.rootViewController=tab;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-    
+    BACKKEYITEM;
+    [self showUI];
     [self getBackKeybord];//设置二级键盘
     self.phoneTextField.delegate=self;
     self.passwordText.delegate=self;
 }
+
 #pragma mark - 摆UI界面
 - (void)showUI{
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"登录_01"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"订单详情_11"] forBarMetrics:UIBarMetricsDefault];
+    self.title=@"登录";
     self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     UIButton *btn=(UIButton *)[self.view viewWithTag:101];
-     btn.userInteractionEnabled=NO;
+    btn.userInteractionEnabled=NO;
 }
 #pragma mark -收键盘
 SHOUJIANPAN;
 INPUTACCESSVIEW
 
 #pragma mark - 实现输入框的协议
-
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-}
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    
-}
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if (textField.tag==201) {
         if (textField.text.length+string.length>11) {
@@ -91,79 +55,37 @@ INPUTACCESSVIEW
             return NO;
         }
     }
-       return YES;
-}
--(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-    if (textField.tag==201) {
-        if ([textField.text length] == 0) {
-            [self showAlertViewWithMaessage:@"号码不能为空"];
-            return YES;
-        }
-        
-        //1[0-9]{10}
-        
-        //^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$
-        
-        //    NSString *regex = @"[0-9]{11}";
-        
-        BOOL isMatch = [Helper validateMobile: textField.text];
-        if (!isMatch) {
-            [self showAlertViewWithMaessage:@"请输入正确的手机号码"];
-        }
-    }else{
-        if ([textField.text length] == 0) {
-            [self showAlertViewWithMaessage:@"密码不能为空"];
-            return YES;
-        }
-        BOOL isMatch = [Helper validatePassword: textField.text];
-        if (!isMatch) {
-            [self showAlertViewWithMaessage:@"密码输入有误"];
-        }
-    }
     return YES;
 }
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)btnClicked:(UIButton *)sender {
-    switch (sender.tag) {
-        case 101:
-        {
-            
-        }
-            break;
-        case 102://注册
-        {
-            RegisterViewController *reg=[[RegisterViewController alloc]init];
-            UINavigationController *nac=[[UINavigationController alloc]initWithRootViewController:reg];
-            reg.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-            [self presentViewController:nac animated:YES completion:nil];
-        }
-            break;
-        case 103://忘记密码
-        {
-            GetBackPasswordViewController *get=[[GetBackPasswordViewController alloc]init];
-            UINavigationController *nac=[[UINavigationController alloc]initWithRootViewController:get];
-            get.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
-            [self presentViewController:nac animated:YES completion:nil];
-        }
-            break;
-        case 104://确定登录
-        {
-            [self requestUrl];
-        }
-            break;
-            
-        default:
-            break;
+    if(sender.tag == 101){
+        return;
+    }
+    if(sender.tag == 102)//注册
+    {
+        RegisterViewController *reg=[[RegisterViewController alloc]init];
+        UINavigationController *nac=[[UINavigationController alloc]initWithRootViewController:reg];
+        reg.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:nac animated:YES completion:nil];
+    }
+    if(sender.tag == 103)//忘记密码
+    {
+        GetBackPasswordViewController *get=[[GetBackPasswordViewController alloc]init];
+        UINavigationController *nac=[[UINavigationController alloc]initWithRootViewController:get];
+        get.modalTransitionStyle=UIModalTransitionStyleCoverVertical;
+        [self presentViewController:nac animated:YES completion:nil];
+    }
+    if(sender.tag == 104)//确定登录
+    {
+        [self requestUrl];
     }
 }
 #pragma mark -用户请求
 -(void)requestUrl{
-   
     if (self.phoneTextField.text.length==0) {
         [self showAlertViewWithMaessage:@"账号不能为空"];
         return;
@@ -172,104 +94,105 @@ INPUTACCESSVIEW
         [self showAlertViewWithMaessage:@"密码不能为空"];
         return;
     }
-    NSDictionary *dic=@{@"mobile": self.phoneTextField.text};
-    NSString *urlPath=[NSString stringWithFormat:CESHIZONG,SHIFOUZHUCE];
+    if(![Helper validateMobile:self.phoneTextField.text]){
+        [self showAlertViewWithMaessage:@"号码格式不正确"];
+        return;
+    }
+    NSString *urlPath=[NSString stringWithFormat:CESHIZONG,DENGLU];
+    NSString *sign=[Helper addSecurityWithUrlStr:DENGLU];
+    NSLog(@"登录sign:%@",sign);
+    NSDictionary *dic=@{@"mobile": self.phoneTextField.text,@"password":self.passwordText.text,@"publicKey":PUBLICKEY,@"sign":sign};
+    //动画
+    SHOWACTIVITY
     //初始化为空 方便下面统一赋值
+    GET_PLISTdICT
+    AFHTTPClient *aClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@""]];
     [aClient postPath:urlPath parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-         BOOL n=[(NSNumber *)dataDict[@"success"] boolValue];
+        [tumblrHUD removeFromSuperview];
+        BOOL n=[(NSNumber *)dataDict[@"success"] boolValue];
         if (!n) {
-            [self showAlertViewWithMaessage:@"该账户未注册，请先注册"];
+            [self showAlertViewWithMaessage:dataDict[@"message"]];
             return ;
         }else{
-            NSNumber *checkStatus=dataDict[@"result"][@"checkStatus"];
-            if (![checkStatus boolValue]) {
-                [self showAlertViewWithMaessage:@"该用户未激活，请到注册界面激活"];
-                return;
+            NSNumber *userId=dataDict[@"result"][@"id"];
+            NSLog(@"---------%@----------",dataDict);
+            NSNumber *verSion=dataDict[@"result"][@"version"];
+            if (dataDict[@"result"][@"realname"]!=[NSNull null]) {
+                [dictPlist setValue:dataDict[@"result"][@"realname"] forKey:@"realname"];
             }
-            //post请求
-            NSDictionary *dict = @{@"mobile":self.phoneTextField.text,@"password":self.passwordText.text};
-            NSString *postPath = [NSString stringWithFormat:CESHIZONG,DENGLU];
-            [aClient postPath:postPath parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                [self downLoadSuccess:responseObject];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"%@",error);
-            }];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showAlertViewWithMaessage:@"请检查网络"];
-        NSLog(@"%@",error);
-    }];
-}
-#pragma mark - 解析数据
--(void)downLoadSuccess:(id)response{
-    NSDictionary *dict=[NSJSONSerialization JSONObjectWithData:response options:0 error:nil];
-   
-    BOOL n=[(NSNumber *)dict[@"success"] boolValue];
-    NSNumber *netSiteId=dict[@"result"][@"netSiteId"];
-    NSNumber *userId=dict[@"result"][@"id"];
-    NSNumber *verSion=dict[@"result"][@"version"];
-    if (!n) {
-        [self showAlertViewWithMaessage:@"密码或者账号输入有误"];
-        return;
-    }else{
-        GET_PLISTdICT
-
-        [dictPlist setValue:@"1" forKey:@"exit"];
-        [dictPlist setValue:[userId stringValue] forKey:@"id"];
-        [dictPlist setValue:[verSion stringValue] forKey:@"version"];
-        [dictPlist setValue:dict[@"result"][@"mobile"] forKey:@"regMobile"];
-        [dictPlist setValue:dict[@"result"][@"username"] forKey:@"username"];
-        
-        NSString *postPath = [NSString stringWithFormat:CESHIZONG,GETMORENWANGDIAN];
-        [aClient postPath:postPath parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSDictionary *dict1=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-            NSString *resultId=dict1[@"result"];//后台测试人员 个人信息已完善
-            if (![resultId isEqualToString:[netSiteId stringValue]]) {
-                [dictPlist setValue:@"1" forKey:@"isTureNetSite"];//1代表已经完善信息 0代表没有
-                [dictPlist setValue:[netSiteId stringValue] forKey:@"netSiteId"];
+            [dictPlist setValue:@"1" forKey:@"exit"];
+            [dictPlist setValue:[userId stringValue] forKey:@"id"];
+            [dictPlist setValue:[verSion stringValue] forKey:@"version"];
+            [dictPlist setValue:[dataDict[@"result"][@"workFlag"] stringValue] forKey:@"workStatus"];
+            [dictPlist setValue:dataDict[@"result"][@"courierCode"] forKey:@"invite"];
+            if (![dataDict[@"result"][@"username"] isKindOfClass:[NSNull class]]) {
+                [dictPlist setValue:dataDict[@"result"][@"username"] forKey:@"username"];
+            }else{
+                [dictPlist setValue:@"null" forKey:@"username"];
+            }
+            [dictPlist setValue:dataDict[@"result"][@"mobile"] forKey:@"regMobile"];
+            
+            if ([dataDict[@"result"][@"netSite"][@"id"] integerValue]==[dataDict[@"result"][@"defaultNetsiteId"] integerValue]) {//表示客户端注册的快递员
+                if (dataDict[@"result"][@"regInfo"]==[NSNull null]) {//没有完善信息		
+                    [dictPlist setValue:@"0" forKey:@"isTureNetSite"];  //1代表已经完善信息 0代表没有
+                    [dictPlist writeToFile:filePatn atomically:YES];
+                    [self changeRootViewController];
+                }else{
+                    [dictPlist setValue:@"1" forKey:@"isTureNetSite"];
+                    [dictPlist setValue:[dataDict[@"result"][@"regInfo"][@"checkStatus"] stringValue] forKey:@"checkStatus"];
+                    NSLog(@"userId:%@",dictPlist[@"id"]);
+                    [APService setTags:nil alias:[NSString stringWithFormat:@"%@",dictPlist[@"id"]] callbackSelector:nil object:nil];
+                    [dictPlist writeToFile:filePatn atomically:YES];
+                    [self changeRootViewController];
+                }
+            }else{//表示后台快递员
+                [dictPlist setValue:@"1" forKey:@"isTureNetSite"];  //1代表已经完善信息 0代表没有
+                [dictPlist setValue:@"1" forKey:@"isBackGroundCoriner"]; //是否是后台快递员
+                [APService setTags:nil alias:[NSString stringWithFormat:@"%@",dictPlist[@"id"]] callbackSelector:nil object:nil];
                 [dictPlist writeToFile:filePatn atomically:YES];
                 [self changeRootViewController];
-                
-            }else{
-                //每次登陆都要获取完善信息判断是否完善信息，是否激活
-                NSString *urlPath=[NSString stringWithFormat:CESHIZONG,GETWANSHANGXINXI];
-                
-                [aClient postPath:urlPath parameters:@{@"regMobile": dict[@"result"][@"mobile"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    
-                    NSDictionary *wDict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
-                    BOOL isFillMessage=[(NSNumber *)wDict[@"success"] boolValue];
-                    NSLog(@"%@",wDict);
-                   
-                    if (isFillMessage) {
-                         NSNumber *checkStatus=wDict[@"result"][@"checkStatus"];
-                        [dictPlist setValue:[checkStatus stringValue] forKey:@"checkStatus"];
-                        [dictPlist setValue:@"1" forKey:@"isTureNetSite"];
-                        [dictPlist writeToFile:filePatn atomically:YES];
-                        [self changeRootViewController];
-                    }else{
-                        [self changeRootViewController];
-                    }
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    [self showAlertViewWithMaessage:@"网络错误"];
-                }];
-                [dictPlist setValue:[netSiteId stringValue] forKey:@"netSiteId"];
-                [dictPlist writeToFile:filePatn atomically:YES];
             }
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self showAlertViewWithMaessage:@"网络异常"];
-        }];
-        
-    }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [tumblrHUD removeFromSuperview];
+        [self showAlertViewWithMaessage:@"网络问题"];
+    }];
 }
 
 #pragma mark - 切换视图控制器
 -(void)changeRootViewController{
+    TabBarViewController *tab=[TabBarViewController shareTabBar];
+    [tab.view reloadInputViews];
     UIApplication *app=[UIApplication sharedApplication];
     AppDelegate *app2=app.delegate;
-    app2.window.rootViewController=[TabBarViewController shareTabBar];
+    app2.window.rootViewController=tab;
+    [tab creatSystemBar];
+    tab.selectedIndex=0;
+}
 
+#pragma mark - 修改
+#pragma mark - 点击输入框 调整高度
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if (textField.tag==201) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.view.frame=CGRectMake(0, -30, self.view.frame.size.width, self.view.frame.size.height) ;
+        }];
+    }else{
+        [UIView animateWithDuration:0.25 animations:^{
+            self.view.frame=CGRectMake(0, -50, self.view.frame.size.width, self.view.frame.size.height) ;
+        }];
+    }
+    return YES;
+}
+
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.phoneTextField resignFirstResponder];
+    [self.passwordText resignFirstResponder];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.view.frame=CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height) ;
+    }];
 }
 
 //显示警告框
@@ -277,6 +200,5 @@ INPUTACCESSVIEW
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 }
-
 
 @end

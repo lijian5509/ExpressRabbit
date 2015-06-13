@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "KuaiDiModel.h"
+
 @interface DidDealViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-- (IBAction)btnClicked:(UIButton *)sender;
 
+@property (strong, nonatomic) KuaiDiModel *model;
 @end

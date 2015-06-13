@@ -8,31 +8,13 @@
 
 #import "TGetPasswordViewController.h"
 
-//#import "AppDelegate.h"
-//#import "TabBarViewController.h"
-
-
-@interface TGetPasswordViewController ()
-
-@end
-
 @implementation TGetPasswordViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self showUI];
 }
-#pragma mark - 摆UI界面
+
 - (void)showUI{
     self.passwordText.delegate=self;
     self.surePasswordText.delegate=self;
@@ -41,10 +23,11 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"订单详情_11"] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     self.title=@"找回密码";
-    //返回键、
+    //返回键
     BACKKEYITEM;
     BACKVIEW;
 }
+
 #pragma mark -收键盘
 SHOUJIANPAN;
 INPUTACCESSVIEW
@@ -54,20 +37,16 @@ INPUTACCESSVIEW
 }
 
 #pragma mark - 实现代理协议的方法
-
--(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-    return YES;
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.passwordText resignFirstResponder];
+    [self.surePasswordText resignFirstResponder];
 }
 
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)isValid{
-    
     if (self.passwordText.text.length==0) {
         [self showAlertViewWithMaessage:@"请输入新密码"];
         return NO;
@@ -84,21 +63,22 @@ INPUTACCESSVIEW
 }
 
 - (IBAction)btnClicked:(UIButton *)sender {
-    
     BOOL isValid = [self isValid];
     if (isValid) {
-        AFHTTPClient *aclient=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@""]];
+        AFHTTPClient *aclient=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@" "]];
         NSString *strUrl=[NSString stringWithFormat:CESHIZONG,WANGGENGHUAN];
        GET_PLISTdICT
-        NSString *phone=[NSString stringWithFormat:@"手机号:%@",dictPlist[@"regMobile"]];
-        NSDictionary *dict=@{@"mobile": phone,@"password":self.passwordText.text};
+        NSString *phone=[NSString stringWithFormat:@"%@",dictPlist[@"regMobile"]];
+        NSString *sign=[Helper addSecurityWithUrlStr:WANGGENGHUAN];
+        NSDictionary *dict=@{@"mobile": phone,@"password":self.passwordText.text,@"publicKey":PUBLICKEY,@"sign":sign};
         [aclient postPath:strUrl parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *dataDict=[NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
             BOOL n = [(NSNumber *)dataDict[@"success"] boolValue];
             if (n) {
-                UIApplication *app=[UIApplication sharedApplication];
-                AppDelegate *app2=app.delegate;
-                app2.window.rootViewController=[TabBarViewController shareTabBar];
+                [self showAlert:@"更改成功,请重新登录" isSure:YES];
+                LogInViewController *log=[[LogInViewController alloc]init];
+                UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:log];
+                [self presentViewController:nav animated:YES completion:nil];
             }else{
                 [self showAlertViewWithMaessage:@" 信息错误 "];
             }
@@ -111,6 +91,27 @@ INPUTACCESSVIEW
 - (void) showAlertViewWithMaessage:(NSString *)title{
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示" message:title delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
+}
+#pragma mark - 提现成功后显示
+- (void)timerFireMethod:(NSTimer*)theTimer//弹出框
+{
+    UIAlertView *promptAlert = (UIAlertView*)[theTimer userInfo];
+    [promptAlert dismissWithClickedButtonIndex:0 animated:NO];
+    promptAlert =NULL;
+}
+
+- (void)showAlert:(NSString *) _message isSure:(BOOL)sure{//时间
+    UIAlertView *promptAlert = [[UIAlertView alloc] initWithTitle:@"提示:" message:_message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    
+    if (sure) {
+        [NSTimer scheduledTimerWithTimeInterval:1.5f
+                                         target:self
+                                       selector:@selector(timerFireMethod:)
+                                       userInfo:promptAlert
+                                        repeats:YES];
+        
+    }
+    [promptAlert show];
 }
 
 

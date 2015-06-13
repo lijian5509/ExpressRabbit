@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShouYeViewController : UIViewController
+@interface ShouYeViewController : UIViewController<UIAlertViewDelegate>
 
 @end

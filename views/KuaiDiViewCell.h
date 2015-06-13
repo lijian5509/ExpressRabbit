@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "KuaiDiModel.h"
+
 @interface KuaiDiViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -16,7 +18,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *orderBtn;
-- (IBAction)btnClicked:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *goImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *promptView;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+
+@property (strong, nonatomic) KuaiDiModel *model;
+
 
 @end

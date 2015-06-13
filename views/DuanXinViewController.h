@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GengHuanMoBanVC.h"
+#import "DuanXinYongWanTiShiVC.h"
 #import "DuanXinViewCell.h"
 
-@interface DuanXinViewController : UITableViewController<UITextViewDelegate,AddTextDelegate,UIAlertViewDelegate>
+@interface DuanXinViewController : UITableViewController<UITextViewDelegate,AddTextDelegate,UIAlertViewDelegate,updateTextViewMessage,goPayFromMessage>
 
 @property (nonatomic,strong)UILabel *wordLabel;
 @property (nonatomic,strong)UILabel *messageLabel;

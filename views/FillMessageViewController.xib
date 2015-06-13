@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1072" defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment version="1072" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FillMessageViewController">
@@ -24,12 +24,6 @@
                     <rect key="frame" x="20" y="20" width="280" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的姓名" minimumFontSize="17" id="5uy-1a-zbF">
-                    <rect key="frame" x="55" y="27" width="235" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="92g-BM-ZhO">
                     <rect key="frame" x="20" y="86" width="280" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
@@ -63,16 +57,6 @@
                     <rect key="frame" x="30" y="101" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ic5-HI-toF">
-                    <rect key="frame" x="270" y="99" width="20" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="验证快递员信息_08.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="jwG-Ym-dhm"/>
-                    </connections>
-                </button>
                 <label opaque="NO" clipsSubviews="YES" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择快递公司" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zt1-rS-SIU">
                     <rect key="frame" x="58" y="100" width="131" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
@@ -119,20 +103,40 @@
                         <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="Kd3-EP-U6Z"/>
                     </connections>
                 </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ic5-HI-toF">
+                    <rect key="frame" x="255" y="104" width="29" height="13"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="完善单号_箭头.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="jwG-Ym-dhm"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的姓名" minimumFontSize="17" id="5uy-1a-zbF">
+                    <rect key="frame" x="55" y="27" width="235" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
+        <image name="完善单号_箭头.png" width="22" height="12"/>
         <image name="注册_10.png" width="240" height="60"/>
         <image name="注册_边框.png" width="280" height="50"/>
         <image name="订单详情_07.png" width="25" height="25"/>
         <image name="验证快递员信息_06.png" width="36" height="36"/>
-        <image name="验证快递员信息_08.png" width="28" height="28"/>
         <image name="验证快递员信息_12.png" width="36" height="36"/>
         <image name="验证快递员信息_14.png" width="36" height="36"/>
         <image name="验证快递员信息_16.png" width="36" height="36"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

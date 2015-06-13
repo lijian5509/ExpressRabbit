@@ -14,7 +14,7 @@
 @property (nonatomic,strong) UIImage *willSendImage;
 @property (strong, nonatomic) NSMutableArray *timestamps;
 @property (strong, nonatomic) AFHTTPClient *client;
-
+@property (nonatomic) BOOL isReading;//正在读取反馈意见
 @end
 
 @implementation ChatViewController
@@ -30,15 +30,29 @@
     self.title = @"意见反馈";
     BACKKEYITEM
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"订单详情_11"] forBarMetrics:UIBarMetricsDefault];
-
+    
     self.messageArray = [NSMutableArray array];
     self.timestamps = [NSMutableArray array];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     _client=[[AFHTTPClient alloc]initWithBaseURL:[NSURL URLWithString:@""]];
-   
+    
     
     
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"聊天"];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"聊天"];
+}
+
+SHOUJIANPAN
+
+
 -(void)getBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -60,23 +74,26 @@
     
     NSString *urlPath=[NSString stringWithFormat:CESHIZONG,YIJIANFASONG];
     GET_PLISTdICT;
-    NSDictionary *dict=@{@"coureirId":dictPlist[@"id"],@"opinion":text,@"creatDate":[Helper dateStringFromNumberDate:[NSDate date]]};
+    NSString *sign=[Helper addSecurityWithUrlStr:YIJIANFASONG];
+    NSDictionary *dict=@{@"coureirId":dictPlist[@"id"],@"opinion":text,@"creatDate":[Helper dateStringFromNumberDate:[NSDate date]],@"publicKey":PUBLICKEY,@"sign":sign};
     [_client postPath:urlPath parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self performSelector:@selector(replyMessage) withObject:self afterDelay:0.25];
-        [self finishSend];
+        if (self.isReading) {
+            return;
+        }
+        self.isReading=YES;
+        [self performSelector:@selector(replyMessage) withObject:self afterDelay:2];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showAlertViewWithMaessage:@"网络异常" title:@"提示" otherBtn:nil];
         
     }];
-   
+    [self finishSend];
 }
 
-SHOUJIANPAN
-
 -(void)replyMessage{
+    self.isReading=NO;
     NSArray *arr=@[@"谢谢您的宝贵建议，我们会认真考虑！",@"您的建议已送达，稍后会与您取得联系",@"感谢你对本公司的支持，您的建议我们会认真听取",@"谢谢您的建议，祝你生活愉快"];
     [self.timestamps addObject:[NSDate date]];
-    [self.messageArray addObject:[NSDictionary dictionaryWithObject:arr[arc4random()%4] forKey:@"Text"]];
+    [self.messageArray addObject:[NSDictionary dictionaryWithObject:arr[arc4random()%4] forKey:@"reply"]];
     [JSMessageSoundEffect playMessageReceivedSound];
     [self finishSend];
     
@@ -93,6 +110,11 @@ SHOUJIANPAN
 
 - (JSBubbleMessageType)messageTypeForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([[self.messageArray objectAtIndex:indexPath.row] objectForKey:@"Text"]) {
+        return JSBubbleMessageTypeOutgoing;
+    }else{
+        return JSBubbleMessageTypeIncoming;
+    }
     return (indexPath.row % 2) ? JSBubbleMessageTypeIncoming : JSBubbleMessageTypeOutgoing;
 }
 
@@ -103,6 +125,9 @@ SHOUJIANPAN
 
 - (JSBubbleMediaType)messageMediaTypeForRowAtIndexPath:(NSIndexPath *)indexPath{
     if([[self.messageArray objectAtIndex:indexPath.row] objectForKey:@"Text"]){
+        return JSBubbleMediaTypeText;
+    }else if ([[self.messageArray objectAtIndex:indexPath.row] objectForKey:@"reply"]){
+        
         return JSBubbleMediaTypeText;
     }else if ([[self.messageArray objectAtIndex:indexPath.row] objectForKey:@"Image"]){
         return JSBubbleMediaTypeImage;
@@ -169,6 +194,8 @@ SHOUJIANPAN
 {
     if([[self.messageArray objectAtIndex:indexPath.row] objectForKey:@"Text"]){
         return [[self.messageArray objectAtIndex:indexPath.row] objectForKey:@"Text"];
+    }else if ([[self.messageArray objectAtIndex:indexPath.row] objectForKey:@"reply"]){
+        return [[self.messageArray objectAtIndex:indexPath.row] objectForKey:@"reply"];
     }
     return nil;
 }
@@ -200,15 +227,11 @@ SHOUJIANPAN
 #pragma mark - Image picker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-	NSLog(@"Chose image!  Details:  %@", info);
-    
     self.willSendImage = [info objectForKey:UIImagePickerControllerEditedImage];
     [self.messageArray addObject:[NSDictionary dictionaryWithObject:self.willSendImage forKey:@"Image"]];
     [self.timestamps addObject:[NSDate date]];
     [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
-    
-	
     [self dismissViewControllerAnimated:YES completion:NULL];
     
 }
@@ -225,17 +248,38 @@ SHOUJIANPAN
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
     [alert show];
 }
+#pragma mark - 提现成功后显示
+- (void)timerFireMethod:(NSTimer*)theTimer//弹出框
+{
+    UIAlertView *promptAlert = (UIAlertView*)[theTimer userInfo];
+    [promptAlert dismissWithClickedButtonIndex:0 animated:NO];
+    promptAlert =NULL;
+}
+
+- (void)showAlert:(NSString *) _message isSure:(BOOL)sure{//时间
+    UIAlertView *promptAlert = [[UIAlertView alloc] initWithTitle:@"提示:" message:_message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    
+    if (sure) {
+        [NSTimer scheduledTimerWithTimeInterval:1.5f
+                                         target:self
+                                       selector:@selector(timerFireMethod:)
+                                       userInfo:promptAlert
+                                        repeats:YES];
+        
+    }
+    [promptAlert show];
+}
 
 
 @end
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */

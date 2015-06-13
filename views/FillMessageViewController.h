@@ -18,4 +18,7 @@
 
 - (IBAction)btnClicked:(UIButton *)sender;
 
+@property (nonatomic,assign) BOOL isCheckFinal;
+@property (nonatomic,assign) BOOL isOderManager;
+
 @end

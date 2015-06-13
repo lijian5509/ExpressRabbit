@@ -11,7 +11,7 @@
 
 @interface TradeDetailViewController : UIViewController
 
-@property (nonatomic, copy) BalanceModel *model;
+@property (nonatomic, strong) BalanceModel *model;
 
 @property (weak, nonatomic) IBOutlet UILabel *serailLabel;
 

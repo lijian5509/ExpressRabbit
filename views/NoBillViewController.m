@@ -22,18 +22,30 @@
     }
     return self;
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"无流水"];
+    TabBarViewController *tab=[TabBarViewController shareTabBar];
+    tab.tabBar.hidden=YES;
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"无流水"];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"订单详情_11"] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+    self.title=@"无流水";
+
     BACKKEYITEM;
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    TabBarViewController *tab=[TabBarViewController shareTabBar];
-    tab.tabBar.hidden=YES;
-}
 
 //导航栏返回键
 -(void)getBack{
@@ -53,9 +65,7 @@
     switch (sender.tag) {
         case 101:
         {
-            ShareViewController *share=[[ShareViewController alloc]init];
-            self.hidesBottomBarWhenPushed=YES;
-            [self.navigationController pushViewController:share animated:YES];
+            
         }
             break;
         case 102:
@@ -63,14 +73,14 @@
             [self showAlertViewWithMaessage:@"您的余额为零" title:@"提示" otherBtn:nil];
         }
             break;
-
+            
         default:
             break;
     }
 }
 //显示警告框
 - (void) showAlertViewWithMaessage:(NSString *)message title:(NSString *)title otherBtn:(NSString *)btnT {
-     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:btnT, nil];
     [alert show];
 }
 

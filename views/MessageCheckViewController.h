@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MessageCheckViewController : UIViewController<UITextFieldDelegate>
+@interface MessageCheckViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
 - (IBAction)btnClicked:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIImageView *smallTitleView;
 @property (weak, nonatomic) IBOutlet UIButton *testBtn;
 @property (nonatomic, copy) NSString *cashNum;
+
+@property (nonatomic, retain)NSMutableArray *dataArray;
 
 
 

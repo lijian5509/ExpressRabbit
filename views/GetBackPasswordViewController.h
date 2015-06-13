@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GetBackPasswordViewController : UIViewController<UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *phoneText;
 
 @property (weak, nonatomic) IBOutlet UITextField *testField;
@@ -16,5 +17,6 @@
 - (IBAction)btnClicked:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *smallTopView;
 @property (weak, nonatomic) IBOutlet UIButton *yanZhengBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *huiXianIamgeView;
 
 @end

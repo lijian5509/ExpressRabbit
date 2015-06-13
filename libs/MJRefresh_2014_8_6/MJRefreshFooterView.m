@@ -25,11 +25,17 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        self.pullToRefreshText = MJRefreshFooterPullToRefresh;
+        self.pullToRefreshText = @"";
         self.releaseToRefreshText = MJRefreshFooterReleaseToRefresh;
         self.refreshingText = MJRefreshFooterRefreshing;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeStatus) name:@"change" object:nil];
     }
     return self;
+}
+
+-(void)changeStatus{
+    self.refreshingText = @"已经没有数据了";
+    NSLog(@"changeStatus");
 }
 
 - (void)layoutSubviews

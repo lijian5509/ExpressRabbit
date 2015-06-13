@@ -23,6 +23,7 @@
 @interface DuanXinViewCell : UITableViewCell<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn1;
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 

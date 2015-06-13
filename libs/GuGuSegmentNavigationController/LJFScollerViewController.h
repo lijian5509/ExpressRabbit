@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LJFScollerViewController : UIViewController
+@interface LJFScollerViewController : UIViewController<UIScrollViewDelegate>
 
 -(id)initWithViewControllers:(NSArray *)controllers withTitle:(NSArray *)titles;
 @property(nonatomic)NSInteger currentIndex;
+
+
 @end

@@ -12,14 +12,10 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    CGRect frame=self.lineView.frame;
+    frame.size.height=0.5;
+    self.lineView.frame=frame;
+    [self.contentView bringSubviewToFront:self.lineView];
 }
 
 @end

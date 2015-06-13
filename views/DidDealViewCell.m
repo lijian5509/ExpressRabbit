@@ -18,12 +18,22 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
-
-- (IBAction)btnClicked:(UIButton *)sender {
-    [sender setTitle:@"取件" forState:UIControlStateNormal];
-    [sender setBackgroundImage:[UIImage imageNamed:@"2_10"] forState:UIControlStateNormal];
+-(void)setModel:(KuaiDiModel *)model{
+    if ([model.fromCityName isEqualToString:@"其他城市"]) {
+        model.fromCityName=@"";
+    }
+    if ([model.fromDistrictName isEqualToString:@"不限"]) {
+        model.fromDistrictName=@"";
+    }
+#pragma mark - 修改
+    self.addressLabel.text=[NSString stringWithFormat:@"%@%@",model.fromDistrictName,model.fromAddress];
+    self.phoneLabel.text=model.senderTelephone;
+    self.timeLabel.text=[Helper dateStringFromNumberString:[model.xdDate stringValue]];
+    
 }
+
+
 @end

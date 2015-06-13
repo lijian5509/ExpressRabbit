@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib
 {
-    self.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"灰色背景"]];
+
     
 }
 
@@ -44,10 +44,10 @@
         }
         self.moneyLabel.text=[NSString stringWithFormat:@"+%@", [model.dealMoney stringValue]];
         self.moneyLabel.textColor=[UIColor cyanColor];
+        self.moneyLabel.textColor=[UIColor colorWithRed:0 green:153/255.f blue:0 alpha:1];
     }
     self.timeLabel.text=[Helper dateStringFromNumberString:[model.createTime stringValue]];
     self.balanceLabel.text=[NSString stringWithFormat:@"余额:%@",[model.balance stringValue]];
-    
     
 
 }

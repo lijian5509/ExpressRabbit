@@ -10,6 +10,16 @@
 
 @interface Helper : NSObject
 
+//MD5加密
++ (NSString *) addSecurityWithUrlStr:(NSString *)url;
+
+//包括年的时间字符串  2014
++ (NSString *) fullDateStringFromNumberString:(NSString *)str;
+//格式化电话薄
++ (NSString *) phoneFromAddressTelphone:(NSString *)str;
+//获取电话号码进行格式化
++ (NSString *) phoneFromSendTelphone:(NSString *)str;
+
 //把一个时间转化为字符串
 + (NSString *)dateStringFromNumberDate:(NSDate *)date;
 
@@ -37,6 +47,8 @@
 + (BOOL) bankCard:(NSString *)cardID;
 //验证邮箱
 + (BOOL) isValidateEmail:(NSString *)email ;
-
-
+//获取个人的发送短信的列表
++ (NSMutableDictionary *)getMessageListAndSelectIndex;
+//获取个人的发送短信路径
++ (NSString *)getMessagePath;
 @end

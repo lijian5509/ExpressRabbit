@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *bankCardTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cardNameTextField;
 - (IBAction)btnClicked:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *lineView1;
 
+@property (weak, nonatomic) IBOutlet UIImageView *lineView2;
 @end

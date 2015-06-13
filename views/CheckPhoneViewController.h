@@ -16,7 +16,8 @@
 
 - (IBAction)btnClicked:(UIButton *)sender;
 
-@property (nonatomic,copy)NSMutableArray *dataArray;
+@property (nonatomic,retain)NSMutableArray *dataArray;
+@property (weak, nonatomic) IBOutlet UIImageView *lineView1;
 
 
 @end

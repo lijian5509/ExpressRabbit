@@ -5,36 +5,49 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>831F36A0-4563-4215-A071-DBA0A73C48F8</string>
+	<string>9F8669AC-4F99-40E9-9281-3F1C245E4FD0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ExpressRabbit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>84CC40B3-DCBD-4903-9446-E1283848CFD5</key>
+		<key>32F9EC4EFB9F88ECA0FD848C65C2523D365DDE20</key>
 		<string>https://github.com/lijian5509/ExpressRabbit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ExpressRabbit.xcodeproj/project.xcworkspace</string>
+	<string>ExpressRabbit.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>84CC40B3-DCBD-4903-9446-E1283848CFD5</key>
+		<key>32F9EC4EFB9F88ECA0FD848C65C2523D365DDE20</key>
 		<string>../..</string>
 	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>32F9EC4EFB9F88ECA0FD848C65C2523D365DDE20</key>
+		<string>svn://192.168.1.112/mycode</string>
+	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/lijian5509/ExpressRabbit.git</string>
+	<string>svn://192.168.1.112/mycode/kuaiditu3/ExpressRabbit.xcodeproj</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>84CC40B3-DCBD-4903-9446-E1283848CFD5</string>
+	<string>32F9EC4EFB9F88ECA0FD848C65C2523D365DDE20</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>32F9EC4EFB9F88ECA0FD848C65C2523D365DDE20</string>
+			<key>IDESourceControlWCCName</key>
+			<string>%E5%BF%AB%E9%80%92%E5%85%94%E7%A5%9E%E5%99%A8(1)--%E6%94%B9%E8%BF%9B</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>84CC40B3-DCBD-4903-9446-E1283848CFD5</string>
+			<string>32F9EC4EFB9F88ECA0FD848C65C2523D365DDE20</string>
 			<key>IDESourceControlWCCName</key>
-			<string>ExpressRabbit</string>
+			<string>%E5%BF%AB%E9%80%92%E5%85%94%E7%A5%9E%E5%99%A8(1)--%E6%94%B9%E8%BF%9B</string>
 		</dict>
 	</array>
 </dict>

@@ -13,63 +13,54 @@
 #import "LogInViewController.h"
 #import "GetBackPasswordViewController.h"
 #import "RegisterViewController.h"
-#import "AFHTTPClient.h"
-#import "TabBarViewController.h"
 #import "AppDelegate.h"
-//#import "LogInViewController.h"
 #import "TGetPasswordViewController.h"
 #import "FillMessageViewController.h"
-#import "WaitViewController.h"
-#import "ShareViewController.h"
 #import "OrderDetailViewController.h"
 #import "DidDealViewCell.h"
 #import "HistoryViewController.h"
-#import "WaitViewController.h"
 #import "FillMessageViewController.h"
-#import "LogInViewController.h"
 #import "KuaiDiViewCell.h"
 #import "HeadView.h"
-#import "GeRenTableViewCell.h"
 #import "SheZhiViewController.h"
-
 #import "ChatViewController.h"
-#import "FialViewController.h"
 #import "GeRenTableViewCell.h"
-#import "AboutViewController.h"
+#import "AboutUsViewController.h"
 #import "LJFScollerViewController.h"
 #import "DidDealTableViewController.h"
 #import "KuaiDiViewController.h"
 
-
-
-
-
-
-
-
-
+//获取屏幕宽度
+#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
 //获取屏幕高度
 #define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
 //获取当前系统版本
 #define SYSTEMVERSION [[UIDevice currentDevice]systemVersion]
-
-//三极色
-#define SANJISE [UIColor colorWithRed:(arc4random()%256/255.0) green:(arc4random()%256/255.0) blue:(arc4random()%256/255.0) alpha:1]
+//设置定制的颜色
+#define MyColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
 //设置二级键盘
 #define INPUTACCESSVIEW -(void)getBackKeybord{\
-UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];\
+UIView *blackLineFromTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENHEIGHT, 1)];\
+blackLineFromTop.backgroundColor = MyColor(200, 200, 200);\
+UIButton *view=[MyControl creatButtonWithFrame:CGRectMake(0, 0, 320, 40) target:self sel:@selector(done) tag:100002 image:nil title:nil];\
 view.backgroundColor=[UIColor whiteColor];\
-UIButton *btn=[MyControl creatButtonWithFrame:CGRectMake(260, 0, 60, 40) target:self sel:@selector(done) tag:10001 image:nil title:@"Done"];\
+UIButton *btn=[MyControl creatButtonWithFrame:CGRectMake(280, 12.5, 30, 15) target:self sel:@selector(done) tag:10001 image:nil title:@"完成"];\
+UIView *blackLineFromBottom = [[UIView alloc] initWithFrame:CGRectMake(0, view.frame.size.height-1, SCREENWIDTH, 1)];\
+blackLineFromBottom.backgroundColor = MyColor(200, 200, 200);\
+[view addSubview:blackLineFromTop];\
+[view addSubview:blackLineFromBottom];\
 [view addSubview:btn];\
 \
+\
 for (UIView *text in self.view.subviews) {\
-    if ([text isKindOfClass:[UITextField class]]) {\
-        ((UITextField *)text).delegate=self;\
-    \
-        ((UITextField *)text).inputAccessoryView=view;\
-        ((UITextField *)text).clearButtonMode=UITextFieldViewModeWhileEditing;\
-    }\
+if ([text isKindOfClass:[UITextField class]]) {\
+((UITextField *)text).delegate=self;\
+\
+((UITextField *)text).inputAccessoryView=view;\
+\
+((UITextField *)text).clearButtonMode=UITextFieldViewModeWhileEditing;\
+}\
 }\
 }\
 -(void)done{\
@@ -77,59 +68,28 @@ for (UIView *text in self.view.subviews) {\
         if ([text isKindOfClass:[UITextField class]]) {\
             ((UITextField *)text).delegate=self;\
 \
+self.view.frame=CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height) ;\
             [(UITextField *)text resignFirstResponder];\
         }\
     }\
  \
 }\
 
-
-
-//获取完善信息状态 记录是否完善信息，是否激活
-
-#define CHECKSTATUS  \
-NSString *isWanShan=dictPlist[@"isTureNetSite"];\
-if ([isWanShan isEqualToString:@"0"]) {\
-    FillMessageViewController *fill=[[FillMessageViewController alloc]init];\
-    self.hidesBottomBarWhenPushed=YES;\
-    [self.navigationController pushViewController:fill animated:YES];\
-    return;\
-}\
-\
-NSString *isJiHuo=dictPlist[@"checkStatus"];\
-if ([isJiHuo isEqualToString:@"0"]) {\
-    FialViewController *wait=[[FialViewController alloc]init];\
-    self.hidesBottomBarWhenPushed=YES;\
-    [self.navigationController pushViewController:wait animated:YES];\
-    return;\
-}else if ([isJiHuo isEqualToString:@"2"]){\
-    WaitViewController *wait=[[WaitViewController alloc]init];\
-    self.hidesBottomBarWhenPushed=YES;\
-    [self.navigationController pushViewController:wait animated:YES];\
-    return;\
-}\
-
-
-
 //收键盘
 #define SHOUJIANPAN -(BOOL)textFieldShouldReturn:(UITextField *)textField{\
 \
+self.view.frame=CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height) ;\
 [textField resignFirstResponder];\
 \
 return YES;\
 \
 }\
-//返回键
 
 //设置背景图片
 #define TABLEVIEWBACKVIEW self.tableView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"灰色背景 "]]
-
-#define BACKVIEW self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"灰色背景"]]
-
+#define BACKVIEW self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"灰色背景 "]]
 //设定常用颜色
-#define GRAYCOLOR [UIColor colorWithPatternImage:[UIImage imageNamed:@"灰色背景"]]
-
-
+#define GRAYCOLOR [UIColor colorWithPatternImage:[UIImage imageNamed:@"灰色背景 "]]
 
 //常用控件
 #import "MyControl.h"
@@ -137,7 +97,12 @@ return YES;\
 #import "Helper.h"
 //第三方下载类
 #import "AFNetworking.h"
-
+//统计
+#import "MobClick.h"
+//格式化字符串
+#import "NSString+Color.h"
+// 活动指示器头文件
+#import "AMTumblrHud.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -145,42 +110,58 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
-//CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//CGColorRef borderColorRef = CGColorCreate(colorSpace,(CGFloat[]){ 1, 0, 0, 1 });
-#define BACKKEYITEM UIButton *btn=[MyControl creatButtonWithFrame:CGRectMake(0, 0,60, 40) target:self sel:@selector(getBack) tag:101 image:nil title:@"< 返回"];\
-\
-btn.titleLabel.font=[UIFont boldSystemFontOfSize:17];\
-\
-[btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];\
-\
-UIBarButtonItem *item=[[UIBarButtonItem alloc]initWithCustomView:btn];\
-\
-self.navigationItem.leftBarButtonItem=item;\
+#define SHOWACTIVITY [tumblrHUD removeFromSuperview];\
+tumblrHUD = [[AMTumblrHud alloc] initWithFrame:CGRectMake((CGFloat) ((self.view.frame.size.width - 55) * 0.5),\
+(CGFloat) ((self.view.frame.size.height - 20) * 0.5), 55, 20)];\
+tumblrHUD.hudColor = UIColorFromRGB(0x000212);\
+[self.view addSubview:tumblrHUD];\
+[tumblrHUD showAnimated:YES];\
 
-#define TEST(str)  UIButton *btn=[MyControl creatButtonWithFrame:CGRectMake(0, 0,60, 40) target:self sel:@selector(getBack) tag:101 image:nil title:str];
-//定义一个获取plist文件元素的宏
-#define GET_PLISTMEMBER(name)  NSString *filePatn=[NSHomeDirectory() stringByAppendingPathComponent:@"userInfo.plist"];\
-NSMutableDictionary *dictPlist=[NSMutableDictionary dictionaryWithContentsOfFile:filePatn];\
-NSString *member=dictPlist[name];
+
+#define HUODONGZHISHIQI   AMTumblrHud *tumblrHUD = [[AMTumblrHud alloc] initWithFrame:CGRectMake((CGFloat) ((self.view.frame.size.width - 55) * 0.5),(CGFloat) ((self.view.frame.size.height - 20) * 0.5), 55, 20)];\
+tumblrHUD.hudColor =[UIColor clearColor];\
+[self.view addSubview:tumblrHUD];\
+[tumblrHUD showAnimated:YES];
+
+#define BACKKEYITEM UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"ic_back"] style:UIBarButtonItemStylePlain target:self action:@selector(getBack)];\
+self.navigationItem.leftBarButtonItem = left;\
+left.tintColor = [UIColor whiteColor];\
+
+#define RIGHTKEYITEM UIButton *rightBtn = [MyControl creatButtonWithFrame:CGRectMake(0, 0, 25, 25) target:self sel:@selector(inviteCustomer) tag:10002 image:@"01_03" title:nil];\
+[rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];\
+rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];\
+rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;\
+rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);\
+UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];\
+\
+right.tintColor = [UIColor whiteColor];\
+self.navigationItem.rightBarButtonItem = right;\
+
 //定义一个获取plist文件的宏
-#define GET_PLISTdICT NSString *filePatn=[NSHomeDirectory() stringByAppendingPathComponent:@"userInfo.plist"];\
+#define GET_PLISTdICT NSString *filePatn=[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/userInfo.plist"];\
 NSMutableDictionary *dictPlist=[NSMutableDictionary dictionaryWithContentsOfFile:filePatn];\
 
-
+//公钥和私钥
+#define PUBLICKEY @"IkZd9z7Jp97j0d2wv644zQKBgQC7OeLYI5FloTHjaxeX3p/A2zzFfXSeP0JHtl7a"
+#define PRIVATEKEY @"jLIlazLombFl9URVrsjI30m6ZaZCI13I7HZ6tuxmub7yL+3PDq9JyPJid+TXaUIQ"
 
 
 //接口文档
-#define CESHIZONG @"http://115.29.240.85/kuaidituInphone/%@"
-#define ZHENGSHIZONG @"http://115.29.206.228/kuaidituInphone%@"
+//测试 115.29.240.85      正式 115.29.206.228  本地 192.168.1.109:8080     115.29.240.85/kuaidituInphone/indexV8.jsp
+#define CESHIZONG @"http://115.29.206.228/kuaidituInphone/v8/%@"
+#define ZHENGSHIZONG @"http://115.29.206.228/kuaidituInphone/v8/%@"
 
+//设置邀请码
+#define INVITECODE @"inviteRecord/setCourierCode"              //courierId
+//邀请客户
+#define INVITETIJIAO @"inviteRecord/sendInviteRequest"         //sign   	publicKey    courierId   invitedMobile
+#define INVITEHISTORY @"inviteRecord/listInviteRecord"         //pageNum    recordId   courierId
 //忘记密码验证验证码是否正确
 #define WANGYANZHENG @"updatePassword/checkRandom"             //mobile   电话号码   random 验证码
 //忘记密码获取验证码
 #define WANGHUOQU @"updatePassword/sendsms"                    //mobile   电话号码
 //忘记密码之更换新密码
 #define WANGGENGHUAN @"updatePassword/updatePasswordByMobile"    //mobile   电话号码   password  密码
-
-
 //登陆
 #define DENGLU @"applog/loginCheck"                           //mobile   电话号码   password  密码
 //点击获取验证码的时候发送
@@ -191,7 +172,6 @@ NSMutableDictionary *dictPlist=[NSMutableDictionary dictionaryWithContentsOfFile
 #define ZHUCE @"applog/regCourier"                             //mobile   电话号码 random 验证码   password  密码
 //判断验证码是否正确
 #define YANZHENGMAISRIGHT @"applog/israndomnum"
-
 //获取订单
 #define HUOQUDINGDAN @"order/listOrders"                        //courierId 快递员Id  page  当前页  pageNum 一页多少条 orderStatus
 //获取订单总数
@@ -204,7 +184,8 @@ NSMutableDictionary *dictPlist=[NSMutableDictionary dictionaryWithContentsOfFile
 #define WEILURUDANHAO @"order/pickedOrder"                      //orderId  订单Id   expressOrderNo   快递单号
 //得到系统时间
 #define GETSYSTIME @"order/pickedOrder"
-
+//获取所有物流公司
+#define ALLWULIU @"express/listExpressCompany"
 //我的信息
 #define WODEXINXI @"courier/getCourier"                          //courierId,快递员ID
 //短信内容
@@ -212,7 +193,7 @@ NSMutableDictionary *dictPlist=[NSMutableDictionary dictionaryWithContentsOfFile
 //发送短信
 #define FASONGDUANXIN @"problemExpress/sendProblemSMS"           //courierId,mobile,sms   快递员Id,手机号码,短信内容
 //查询快递员当天发短信总数
-#define CHAXUNDANGTIANDUANXINLIANG @"problemExpress/getproblemExpressCount"  //courierId  快递员Id
+#define CHAXUNDANGTIANDUANXINLIANG @"problemExpress/getCourierMesNum"  //courierId  快递员Id
 //发送短信记录查询
 #define DUANXINJILU @"problemExpress/listProblems"               //courierId 快递员Id   page  当前页  pageNum  一页多少条
 //短信详情
@@ -247,7 +228,6 @@ NSMutableDictionary *dictPlist=[NSMutableDictionary dictionaryWithContentsOfFile
 #define QUXIAN @"balanceDeal/turnOutCourierCmoney"               //courierId,turnOutMoney,random
 //发送验证码 (取现）
 #define QUXIANYANZHENG @"balanceDeal/sendsms"                    //mobile
-
 //获取流水表数据
 #define ZHANGDANCHAXUN @"balanceDeal/listProcessInfos"           //courierId,page,pageNum
 //流水表总数
@@ -258,17 +238,20 @@ NSMutableDictionary *dictPlist=[NSMutableDictionary dictionaryWithContentsOfFile
 #define ZHANGDANSHUJUDETAIL @"balanceDeal/getProcessInfoDetail"  //processInfoId
 //得到银行卡信息
 #define GETBANKCARKMESSASGE @"bankCard/getBankCardInfo"         //courierId  快递员id
+//订单已读
+#define DINGDANYIDU @"order/courierReadOrder"                    //orderId  
+//订单未读
+#define DINGDANWEIDU @"order/getNewOrdersCount"                  //courierId
+//新流水数目
+#define XINLIUSHUISHUMU @"balanceDeal/getNewProcessCount"        //courierId    motifyTime
+//支付回调
+#define DUANXINZHIFU @"courier/payMesAmount"
+//完善订单号
+#define WANSHANDINGDANHAO @"regInfo/updateRegInfo"
 
-
-#import "AFNetworking.h"
-
-
-#define HUODONGZHISHIQI   AMTumblrHud *tumblrHUD = [[AMTumblrHud alloc] initWithFrame:CGRectMake((CGFloat) ((self.view.frame.size.width - 55) * 0.5),\
-(CGFloat) ((self.view.frame.size.height - 20) * 0.5), 55, 20)];\
-tumblrHUD.hudColor =[UIColor clearColor];\
-\[self.view addSubview:tumblrHUD];\
-[tumblrHUD showAnimated:YES];
-#import "AMTumblrHud.h"// 活动指示器头文件
-
-
+//图片接口
+//测试  115.29.240.85 正式 115.29.206.228
+#define CESHITUPIAN @"http://115.29.206.228/Skuaiditu-managerCms/"
+//正式
+#define ZHENGSHITUPIAN @"http://115.29.206.228/Skuaiditu-managerCms/"
 #endif
